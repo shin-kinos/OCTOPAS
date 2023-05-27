@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: sequencelib
+Version: 2.14.1
+Summary: Read, write, and analyze biological sequences
+Home-page: https://github.com/agormp/sequencelib
+Author: Anders Gorm Pedersen
+Author-email: agpe@dtu.dk
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: Levenshtein
+
+# sequencelib
+
+![](https://img.shields.io/badge/version-2.14.1-blue)
+[![PyPI downloads](https://static.pepy.tech/personalized-badge/sequencelib?period=total&units=none&left_color=black&right_color=blue&left_text=downloads&service=github)](https://pepy.tech/project/sequencelib)
+
+Using classes and methods in sequencelib.py it is possible to read and write textfiles containing DNA or protein-sequences (possibly aligned) and to analyze and manipulate the sequence in various ways.
+
+## Availability
+
+The sequencelib.py module is available on GitHub: https://github.com/agormp/sequencelib and on PyPI: https://pypi.org/project/sequencelib/
+
+## Installation
+
+```
+python3 -m pip install sequencelib
+```
+
+## Highlights
+
+To be written

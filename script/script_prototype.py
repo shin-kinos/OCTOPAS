@@ -47,17 +47,18 @@ def print_version():
 # Print help
 def print_help( script_name ):
     print( '\nUsage: %', script_name, '[Options] \n\n\nOptions :\n' )
-    print( '-i | --input   <String>     Input file name, REQUIRED' )
-    print( '-o | --output  <String>     Output file name prefix, REQUIRED' )
-    print( '-O | --outdir  <String>     Output directory name, if it is empty, all output files are saved in current directory' )
-    print( '-f | --format  <String>     Format of input file:\n'           \
-           '                                * newick = Newick (default)\n' \
-           '                                * nexus  = NEXUS' )
-    print( '-n | --NL      <Integer>    Number of leaves remain, more than 0, default 3' )
-    print( '-r | --RTL     <Real>       Threshold of relative tree length, at range of [0, 1], default 0.95' )
-    print( '-s | --silent  <Flag>       If true, program does not show any logs on terminal during calculation' )
-    print( '-v | --version <Flag>       Print current version, ignore all other arguments' )
-    print( '-h | --help    <Flag>       Print this help, ignore all other arguments' )
+    print( '-i | --input      <String>     Input file name, REQUIRED' )
+    print( '-o | --output     <String>     Output file name prefix, REQUIRED' )
+    print( '-O | --outdir     <String>     Output directory name, if it is empty, all output files are saved in current directory' )
+    print( '-f | --format     <String>     Format of input file:\n'           \
+           '                                   * newick = Newick (default)\n' \
+           '                                   * nexus  = NEXUS' )
+    print( '-n | --NL         <Integer>    Number of leaves remain, more than 0, default 3' )
+    print( '-r | --RTL        <Real>       Threshold of relative tree length, at range of [0, 1], default 0.95' )
+    print( '-R | --resolution <Integer>    resolution of leaf pruning, more than 0, default 1' )
+    print( '-s | --silent     <Flag>       If true, program does not show any logs on terminal during calculation' )
+    print( '-v | --version    <Flag>       Print current version, ignore all other arguments' )
+    print( '-h | --help       <Flag>       Print this help, ignore all other arguments' )
     sys.exit( 0 )
 
 # Error handling
@@ -65,24 +66,11 @@ def print_help( script_name ):
 class Error( Enum ):
     NO_INPUT_FILE  = 'Input file name is required.'
     NO_OUTPUT_FILE = 'Output file name is required.'
-
-# Error bombing function using Enum 'Error'
-def error_bomb( MESSAGE ):
-    # Colorised message is shown on terminal
-    # And normal message is saved to log
-    global ARG_S
-    ARG_S = True
-
-    print( RED + '\n\nERROR !!!' + RESET )
-    print_log(   '\n\nERROR !!!'         )
-
-    print(     MESSAGE.value )
-    print_log( MESSAGE.value )
-
-    print( RED + '\nPROGRAM HALTED !!!' + RESET )
-    print_log(   '\nRPOGRAM HALTED !!!'         )
-
-    sys.exit( 1 )
+    NL_NOT_INT     = 'Option -n or --NL must be integer number.'
+    RTL_NOT_REAL   = 'Option -r or --RTL must be real number.'
+    RES_NOT_INT    = 'Option -R or --resolution must be integer number.'
+    NL_TOO_SMALL   = 'Option -n or -NL must be 3 or more'
+    RTL_OUT_RANGE  = 'Option -r or --RTL must be at range of [0, 1].'
 
 # Error bombing function using Enum 'Error'
 def error_bomb( MESSAGE ):
@@ -121,9 +109,11 @@ class Options:
         outdir   = '',       # Output directory name
         format   = 'newick', # Input file format, default newick
         nl       = '3',      # Number of leaes remain, default 3
-        rtl      = '0.95',   # Criterion of RTL, default 0.95
+        rtl      = '0.95',   # Threshold of RTL, default 0.95
+        res      = '1',      # Resolution of lraf pruning, default 1
         nl_flag  = False,    # Flag if '-n' appears in arguments
         rtl_flag = False,    # Flag if '-r' appears in arguments
+        res_flag = False,    # Flag if '-R' appears in arguments
         use_nl   = False,    # Whether NL are used as stop option, default False
         silent   = False     # If program does not show logs
     ):
@@ -134,8 +124,10 @@ class Options:
         self.format   = format
         self.nl       = nl
         self.rtl      = rtl
+        self.res      = res
         self.nl_flag  = nl_flag
         self.rtl_flag = rtl_flag
+        self.res_flag = res_flag
         self.use_nl   = use_nl
         self.silent   = silent
 
@@ -147,16 +139,17 @@ class Options:
 
         i = 1
         while ( i < len( argv ) ):
-            if   ( argv[ i ] == '-i' or argv[ i ] == '--input'   ): self.input  = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-o' or argv[ i ] == '--output'  ): self.output = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-O' or argv[ i ] == '--outdir'  ): self.outdir = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-f' or argv[ i ] == '--format'  ): self.format = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-n' or argv[ i ] == '--NL'      ): self.nl     = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-r' or argv[ i ] == '--RTL'     ): self.rtl    = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-s' or argv[ i ] == '--silent'  ): self.silent = True; i += 1
-            elif ( argv[ i ] == '-v' or argv[ i ] == '--version' ): print_version()
-            elif ( argv[ i ] == '-h' or argv[ i ] == '--help'    ): print_help( argv[ 0 ] )
-            else                                                  : print_help( argv[ 0 ] )
+            if   ( argv[ i ] == '-i' or argv[ i ] == '--input'      ): self.input  = argv[ i + 1 ]; i += 2
+            elif ( argv[ i ] == '-o' or argv[ i ] == '--output'     ): self.output = argv[ i + 1 ]; i += 2
+            elif ( argv[ i ] == '-O' or argv[ i ] == '--outdir'     ): self.outdir = argv[ i + 1 ]; i += 2
+            elif ( argv[ i ] == '-f' or argv[ i ] == '--format'     ): self.format = argv[ i + 1 ]; i += 2
+            elif ( argv[ i ] == '-n' or argv[ i ] == '--NL'         ): self.nl     = argv[ i + 1 ]; i += 2
+            elif ( argv[ i ] == '-r' or argv[ i ] == '--RTL'        ): self.rtl    = argv[ i + 1 ]; i += 2
+            elif ( argv[ i ] == '-R' or argv[ i ] == '--resolution' ): self.res    = argv[ i + 1 ]; i += 2
+            elif ( argv[ i ] == '-s' or argv[ i ] == '--silent'     ): self.silent = True; i += 1
+            elif ( argv[ i ] == '-v' or argv[ i ] == '--version'    ): print_version()
+            elif ( argv[ i ] == '-h' or argv[ i ] == '--help'       ): print_help( argv[ 0 ] )
+            else                                                     : print_help( argv[ 0 ] )
 
     def checkOptions( self ):
         # Set output file names
@@ -174,10 +167,29 @@ class Options:
         if ( self.input  is None ): error_bomb( Error.NO_INPUT_FILE  )
         if ( self.output is None ): error_bomb( Error.NO_OUTPUT_FILE )
 
-        # Check if '-n' or '-r' exist in arguments
-        if ( '-n' in self.args or '--NL'  in self.args ): self.nl_flag  = True
-        if ( '-r' in self.args or '--RTL' in self.args ): self.rtl_flag = True
+        # Check if '--NL' is not integer
+        if ( ( self.nl ).isdigit() == False ): error_bomb( Error.NL_NOT_INT )
+
+        # Check if '--RTL' is not float
+        if ( ( self.rtl ).replace( '.', '', 1 ).isdigit() == False ): error_bomb( Error.RTL_NOT_REAL )
+
+        # Check if '--resolution' is not integer
+        if ( ( self.res ).isdigit() == False ): error_bomb( Error.RES_NOT_INT )
+
+        # Check if '-n', '-r' or '-R' exist in arguments
+        if ( '-n' in self.args or '--NL'         in self.args ): self.nl_flag  = True
+        if ( '-r' in self.args or '--RTL'        in self.args ): self.rtl_flag = True
+        if ( '-R' in self.args or '--resolution' in self.args ): self.res_flag = True
         #print( self.args )
+
+        # Check if '--NL' is 3 or more
+        if ( int( self.nl ) < 3 ): error_bomb( Error.NL_TOO_SMALL )
+
+        # Check if '--RTL' is at range of [0, 1].
+        if ( float( self.rtl ) < 0.0 or float( self.rtl ) > 1.0 ): error_bomb( Error.RTL_OUT_RANGE )
+
+        # If '-R' is 1, use pruneWithDefaultMode()
+        if ( self.res == '1' ): self.res_flag = False
 
         # If both of stop options appear in arguments, RTL is prioritised
         if   ( self.nl_flag == True  and self.rtl_flag == True  ): self.use_nl = False
