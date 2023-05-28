@@ -5,7 +5,7 @@ import time               # For elapse time reporting
 from   enum import Enum   # For Enum error handling
 import phylotreelib as pt # Package for tree handling
 
-VERSION = '0.1.1'      # Current version of program
+VERSION = '0.1.2'      # Current version of program
 ARG_S   = False        # Global variable of argument '--silent', True or False, default False
 EXE_LOG = ''           # Global variable of execution log
 TSV_LOG = ''           # Global variable of output TSV file
@@ -186,7 +186,7 @@ class Options:
         if ( int( self.nl ) < 3 ): error_bomb( Error.NL_TOO_SMALL )
 
         # Check if '--RTL' is at range of [0, 1].
-        if ( float( self.rtl ) < 0.0 or float( self.rtl ) > 1.0 ): error_bomb( Error.RTL_OUT_RANGE )
+        if ( float( self.rtl ) <= 0.0 or float( self.rtl ) >= 1.0 ): error_bomb( Error.RTL_OUT_RANGE )
 
         # If '-R' is 1, use pruneWithDefaultMode()
         if ( self.res == '1' ): self.res_flag = False
@@ -264,6 +264,29 @@ def detect_pruned_leaf( tree, leaves, root ):
             target_leaf_bl = leaf_bl
 
     return target_leaf
+
+def detect_pruned_leaves( tree, leaves, root, resolution ):
+    # get leaves branch length
+    leaves_bl = list()
+    for leaf in leaves:
+        path    = tree.nodepath( leaf, root )
+        leaf_bl = tree.nodedist( path[ 0 ], path[ 1 ] )
+        leaves_bl.append( leaf_bl )
+
+    # sort branch lengths
+    for i in range( 0, len( leaves ) - 1 ):
+        for j in range( i + 1, len( leaves ) ):
+            if ( leaves_bl[ j ] < leaves_bl[ i ] ):
+                tmp            = leaves_bl[ i ]
+                leaves_bl[ i ] = leaves_bl[ j ]
+                leaves_bl[ j ] = tmp
+
+                tmp         = leaves[ i ]
+                leaves[ i ] = leaves[ j ]
+                leaves[ j ] = tmp
+
+    # Return first [resolution] elements
+    return leaves[ : resolution ]
 
 # --------------------------------------------------------------------------- #
 #                    CLASSES FOR PHYLOGENETIC TREE PRUNING                    #
@@ -367,6 +390,7 @@ class Pruner( Tree ):
         stop_at_rtl       = 0.95,   # Stop option of RTL criterion, default 0.95
         current_rtl       = None,   # Current RTL in each iteration
         pruned_leaf       = None,   # Pruned one leaf in each iteration
+        pruned_leaf_list  = list(), # Pruned [resolution] leavs in each iteration
         num_remain_leaves = None,   # Number of remaining leaves
         iteration_time    = 1       # Iteration time of pruning process
     ):
@@ -378,6 +402,7 @@ class Pruner( Tree ):
         self.stop_at_rtl       = stop_at_rtl
         self.current_rtl       = current_rtl
         self.pruned_leaf       = pruned_leaf
+        self.pruned_leaf_list  = pruned_leaf_list
         self.num_remain_leaves = num_remain_leaves
         self.iteration_time    = iteration_time
 
@@ -452,6 +477,66 @@ class Pruner( Tree ):
                         break
                     # Inclement iteration time
                     self.iteration_time += 1
+
+    # Pruning leaves at resolution = n
+    def pruneWithFastMode( self, use_nl, resolution ):
+        # Get number of all leaves
+        self.num_remain_leaves = self.num_all_leaves
+        # Report TSV, header name
+        report_tsv( 'Iteration\t#RemainLeaves\tRTL' )
+        # Get Initial RTL
+        self.current_rtl = 1.0
+
+        print_log( '\nSTART PRUNING !\n' )
+        # If stop option = NL
+        if ( use_nl == True ):
+            while ( self.num_remain_leaves > self.stop_at_nl ):
+                self.pruned_leaf_list = detect_pruned_leaves( self.pruned_tree,
+                                                              self.remain_leaves,
+                                                              self.root_node,
+                                                              resolution )
+                for leaf in self.pruned_leaf_list: ( self.pruned_tree   ).remove_leaf( leaf ) # Prune [resolution] leaves
+                for leaf in self.pruned_leaf_list: ( self.remain_leaves ).remove(      leaf ) # Pop target pruned leaf
+                for leaf in self.pruned_leaf_list: ( self.pruned_leaves ).append(      leaf ) # Add target pruned leaves
+                # Calculate current RTL
+                self.current_rtl = ( self.pruned_tree ).length() / self.rtl_denominator
+                # Show number of remaining leaves
+                self.num_remain_leaves -= resolution
+                current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
+                print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
+                            'RTL : '                + current_rtl_round             + '\t' + \
+                            '# of leaves remain : ' + str( self.num_remain_leaves ) )
+                # Stop loop if [# leaves remain] < [resolution] and program still try to run
+                if ( ( self.num_remain_leaves - resolution ) <= 3 ):
+                    print_log( '\nNOTE : Iteration stopped since no leaves can be pruned with the resolution.' )
+                    break
+                # Inclement iteration time
+                self.iteration_time += 1
+
+        # If stop option = RTL
+        if ( use_nl == False ):
+            while ( self.current_rtl > self.stop_at_rtl ):
+                self.pruned_leaf_list = detect_pruned_leaves( self.pruned_tree,
+                                                              self.remain_leaves,
+                                                              self.root_node,
+                                                              resolution )
+                for leaf in self.pruned_leaf_list: ( self.pruned_tree   ).remove_leaf( leaf ) # Prune [resolution] leaves
+                for leaf in self.pruned_leaf_list: ( self.remain_leaves ).remove(      leaf ) # Pop target pruned leaf
+                for leaf in self.pruned_leaf_list: ( self.pruned_leaves ).append(      leaf ) # Add target pruned leaves
+                # Calculate current RTL
+                self.current_rtl = ( self.pruned_tree ).length() / self.rtl_denominator
+                # Show number of remaining leaves
+                self.num_remain_leaves -= resolution
+                current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
+                print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
+                            'RTL : '                + current_rtl_round             + '\t' + \
+                            '# of leaves remain : ' + str( self.num_remain_leaves ) )
+                # Stop loop if [# leaves remain] < [resolution] and program still try to run
+                if ( ( self.num_remain_leaves - resolution ) <= 3 ):
+                    print_log( '\nNOTE : Iteration stopped since no leaves can be pruned with the resolution.' )
+                    break
+                # Inclement iteration time
+                self.iteration_time += 1
 
 # --------------------------------------------------------------------------- #
 #                      CLASSES FOR OUTPUT FILES HANDING                       #
@@ -584,7 +669,8 @@ def main():
     # Now pruning time! 😁
     tree.setInitialTreeInfo()
     tree.setStopOptions( int( options.nl ), float( options.rtl ) )
-    tree.pruneWithDefaultMode( options.use_nl )
+    if   ( options.res_flag == True  ): tree.pruneWithFastMode(    options.use_nl, int( options.res ) )
+    elif ( options.res_flag == False ): tree.pruneWithDefaultMode( options.use_nl )
 
     # Save output files
     output.saveTsv()

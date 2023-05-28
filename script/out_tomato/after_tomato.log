@@ -1,0 +1,190 @@
+
+Parameter set :
+===============================================================
+ * Input filename         : ../test_data/360_tomato.newick
+ * Output filename prefix : after_tomato
+ * Output dirname         : out_tomato
+ * Stop option (RTL)      : 0.95
+ * Silent                 : False
+===============================================================
+
+Output directory out_tomato/ was created.
+
+
+Reading tree data ...
+=> DONE
+
+Getting leaf names ...
+=> DONE
+
+Mid-point rooting ...
+=> DONE
+
+Detecting root node ...
+=> DONE
+
+Calculating basic Statistics of the input tree ...
+=> DONE
+
+Input tree Statistics :
+===============================================================
+ * Number of the leaves in the tree          : 361
+ * Total branch length of the tree           : 15.524275
+ * Diameter (the longest leaf-leaf distance) : 0.822199
+ * Height (the longest root-to-tip distance) : 0.4111
+===============================================================
+
+START PRUNING !
+
+Iteration : 1	RTL : 1.000000000000	# of leaves remain : 360	Pruned leaf : TS-1
+Iteration : 2	RTL : 0.999899585006	# of leaves remain : 359	Pruned leaf : TS-206
+Iteration : 3	RTL : 0.999798597360	# of leaves remain : 358	Pruned leaf : TS-195
+Iteration : 4	RTL : 0.999667508470	# of leaves remain : 357	Pruned leaf : TS-142
+Iteration : 5	RTL : 0.999510222543	# of leaves remain : 356	Pruned leaf : TS-235
+Iteration : 6	RTL : 0.999347512209	# of leaves remain : 355	Pruned leaf : TS-163
+Iteration : 7	RTL : 0.999178339093	# of leaves remain : 354	Pruned leaf : TS-73
+Iteration : 8	RTL : 0.999009090611	# of leaves remain : 353	Pruned leaf : TS-63
+Iteration : 9	RTL : 0.998839035006	# of leaves remain : 352	Pruned leaf : TS-183
+Iteration : 10	RTL : 0.998661068565	# of leaves remain : 351	Pruned leaf : TS-178
+Iteration : 11	RTL : 0.998481686921	# of leaves remain : 350	Pruned leaf : TS-153
+Iteration : 12	RTL : 0.998299133470	# of leaves remain : 349	Pruned leaf : TS-43
+Iteration : 13	RTL : 0.998111831327	# of leaves remain : 348	Pruned leaf : TS-141
+Iteration : 14	RTL : 0.997919430073	# of leaves remain : 347	Pruned leaf : TS-130
+Iteration : 15	RTL : 0.997724418714	# of leaves remain : 346	Pruned leaf : TS-101
+Iteration : 16	RTL : 0.997524024816	# of leaves remain : 345	Pruned leaf : TS-185
+Iteration : 17	RTL : 0.997318515769	# of leaves remain : 344	Pruned leaf : TS-253
+Iteration : 18	RTL : 0.997112287783	# of leaves remain : 343	Pruned leaf : TS-241
+Iteration : 19	RTL : 0.996905040747	# of leaves remain : 342	Pruned leaf : TS-271
+Iteration : 20	RTL : 0.996696457095	# of leaves remain : 341	Pruned leaf : TS-46
+Iteration : 21	RTL : 0.996483562131	# of leaves remain : 340	Pruned leaf : TS-122
+Iteration : 22	RTL : 0.996269501895	# of leaves remain : 339	Pruned leaf : TS-49
+Iteration : 23	RTL : 0.996051805419	# of leaves remain : 338	Pruned leaf : TS-169
+Iteration : 24	RTL : 0.995832736253	# of leaves remain : 337	Pruned leaf : TS-232
+Iteration : 25	RTL : 0.995612189402	# of leaves remain : 336	Pruned leaf : TS-191
+Iteration : 26	RTL : 0.995389217987	# of leaves remain : 335	Pruned leaf : TS-51
+Iteration : 27	RTL : 0.995163251237	# of leaves remain : 334	Pruned leaf : TS-126
+Iteration : 28	RTL : 0.994931720298	# of leaves remain : 333	Pruned leaf : TS-269
+Iteration : 29	RTL : 0.994691501675	# of leaves remain : 332	Pruned leaf : TS-264
+Iteration : 30	RTL : 0.994450430838	# of leaves remain : 331	Pruned leaf : TS-259
+Iteration : 31	RTL : 0.994205866118	# of leaves remain : 330	Pruned leaf : TS-86
+Iteration : 32	RTL : 0.993959596327	# of leaves remain : 329	Pruned leaf : TS-2
+Iteration : 33	RTL : 0.993710338957	# of leaves remain : 328	Pruned leaf : TS-236
+Iteration : 34	RTL : 0.993459900211	# of leaves remain : 327	Pruned leaf : TS-93
+Iteration : 35	RTL : 0.993198751142	# of leaves remain : 326	Pruned leaf : TS-100
+Iteration : 36	RTL : 0.992928250602	# of leaves remain : 325	Pruned leaf : TS-44
+Iteration : 37	RTL : 0.992652244157	# of leaves remain : 324	Pruned leaf : TS-179
+Iteration : 38	RTL : 0.992370430033	# of leaves remain : 323	Pruned leaf : TS-268
+Iteration : 39	RTL : 0.992086983627	# of leaves remain : 322	Pruned leaf : TS-157
+Iteration : 40	RTL : 0.991797880273	# of leaves remain : 321	Pruned leaf : TS-285
+Iteration : 41	RTL : 0.991502933169	# of leaves remain : 320	Pruned leaf : TS-166
+Iteration : 42	RTL : 0.991204297004	# of leaves remain : 319	Pruned leaf : TS-293
+Iteration : 43	RTL : 0.990905075626	# of leaves remain : 318	Pruned leaf : TS-198
+Iteration : 44	RTL : 0.990605321856	# of leaves remain : 317	Pruned leaf : TS-180
+Iteration : 45	RTL : 0.990304885284	# of leaves remain : 316	Pruned leaf : TS-282
+Iteration : 46	RTL : 0.990004369482	# of leaves remain : 315	Pruned leaf : TS-58
+Iteration : 47	RTL : 0.989701806563	# of leaves remain : 314	Pruned leaf : TS-288
+Iteration : 48	RTL : 0.989397650011	# of leaves remain : 313	Pruned leaf : TS-132
+Iteration : 49	RTL : 0.989092537537	# of leaves remain : 312	Pruned leaf : TS-251
+Iteration : 50	RTL : 0.988785761861	# of leaves remain : 311	Pruned leaf : TS-239
+Iteration : 51	RTL : 0.988477865360	# of leaves remain : 310	Pruned leaf : TS-167
+Iteration : 52	RTL : 0.988169791717	# of leaves remain : 309	Pruned leaf : TS-283
+Iteration : 53	RTL : 0.987852844229	# of leaves remain : 308	Pruned leaf : TS-255
+Iteration : 54	RTL : 0.987533700826	# of leaves remain : 307	Pruned leaf : TS-177
+Iteration : 55	RTL : 0.987213348864	# of leaves remain : 306	Pruned leaf : TS-155
+Iteration : 56	RTL : 0.986885720041	# of leaves remain : 305	Pruned leaf : TS-173
+Iteration : 57	RTL : 0.986555696903	# of leaves remain : 304	Pruned leaf : TS-45
+Iteration : 58	RTL : 0.986221551060	# of leaves remain : 303	Pruned leaf : TS-192
+Iteration : 59	RTL : 0.985885944408	# of leaves remain : 302	Pruned leaf : TS-159
+Iteration : 60	RTL : 0.985549345762	# of leaves remain : 301	Pruned leaf : TS-76
+Iteration : 61	RTL : 0.985211448504	# of leaves remain : 300	Pruned leaf : TS-136
+Iteration : 62	RTL : 0.984873140921	# of leaves remain : 299	Pruned leaf : TS-176
+Iteration : 63	RTL : 0.984532728248	# of leaves remain : 298	Pruned leaf : TS-152
+Iteration : 64	RTL : 0.984186725994	# of leaves remain : 297	Pruned leaf : TS-47
+Iteration : 65	RTL : 0.983838897193	# of leaves remain : 296	Pruned leaf : TS-294
+Iteration : 66	RTL : 0.983481839621	# of leaves remain : 295	Pruned leaf : TS-114
+Iteration : 67	RTL : 0.983119198534	# of leaves remain : 294	Pruned leaf : TS-222
+Iteration : 68	RTL : 0.982750993259	# of leaves remain : 293	Pruned leaf : TS-143
+Iteration : 69	RTL : 0.982382005983	# of leaves remain : 292	Pruned leaf : TS-276
+Iteration : 70	RTL : 0.982005918859	# of leaves remain : 291	Pruned leaf : TS-181
+Iteration : 71	RTL : 0.981612900187	# of leaves remain : 290	Pruned leaf : TS-270
+Iteration : 72	RTL : 0.981218837730	# of leaves remain : 289	Pruned leaf : TS-252
+Iteration : 73	RTL : 0.980824597745	# of leaves remain : 288	Pruned leaf : TS-80
+Iteration : 74	RTL : 0.980423330057	# of leaves remain : 287	Pruned leaf : TS-112
+Iteration : 75	RTL : 0.980019811700	# of leaves remain : 286	Pruned leaf : TS-213
+Iteration : 76	RTL : 0.979615083624	# of leaves remain : 285	Pruned leaf : TS-212
+Iteration : 77	RTL : 0.979208395393	# of leaves remain : 284	Pruned leaf : TS-290
+Iteration : 78	RTL : 0.978800037519	# of leaves remain : 283	Pruned leaf : TS-233
+Iteration : 79	RTL : 0.978380481054	# of leaves remain : 282	Pruned leaf : TS-61
+Iteration : 80	RTL : 0.977956787198	# of leaves remain : 281	Pruned leaf : TS-75
+Iteration : 81	RTL : 0.977517753495	# of leaves remain : 280	Pruned leaf : TS-161
+Iteration : 82	RTL : 0.977077519092	# of leaves remain : 279	Pruned leaf : TS-170
+Iteration : 83	RTL : 0.976636105890	# of leaves remain : 278	Pruned leaf : TS-99
+Iteration : 84	RTL : 0.976194328742	# of leaves remain : 277	Pruned leaf : TS-432
+Iteration : 85	RTL : 0.975751963096	# of leaves remain : 276	Pruned leaf : TS-60
+Iteration : 86	RTL : 0.975308551089	# of leaves remain : 275	Pruned leaf : TS-297
+Iteration : 87	RTL : 0.974860664799	# of leaves remain : 274	Pruned leaf : TS-189
+Iteration : 88	RTL : 0.974412159478	# of leaves remain : 273	Pruned leaf : TS-289
+Iteration : 89	RTL : 0.973963512895	# of leaves remain : 272	Pruned leaf : TS-42
+Iteration : 90	RTL : 0.973512141096	# of leaves remain : 271	Pruned leaf : TS-174
+Iteration : 91	RTL : 0.973058603656	# of leaves remain : 270	Pruned leaf : TS-275
+Iteration : 92	RTL : 0.972603478381	# of leaves remain : 269	Pruned leaf : TS-81
+Iteration : 93	RTL : 0.972145415255	# of leaves remain : 268	Pruned leaf : TS-246
+Iteration : 94	RTL : 0.971678497481	# of leaves remain : 267	Pruned leaf : TS-110
+Iteration : 95	RTL : 0.971204247963	# of leaves remain : 266	Pruned leaf : TS-82
+Iteration : 96	RTL : 0.970728373893	# of leaves remain : 265	Pruned leaf : TS-257
+Iteration : 97	RTL : 0.970252294338	# of leaves remain : 264	Pruned leaf : TS-187
+Iteration : 98	RTL : 0.969774144477	# of leaves remain : 263	Pruned leaf : TS-193
+Iteration : 99	RTL : 0.969292793178	# of leaves remain : 262	Pruned leaf : TS-194
+Iteration : 100	RTL : 0.968809744602	# of leaves remain : 261	Pruned leaf : TS-5
+Iteration : 101	RTL : 0.968322947639	# of leaves remain : 260	Pruned leaf : TS-162
+Iteration : 102	RTL : 0.967835072364	# of leaves remain : 259	Pruned leaf : TS-28
+Iteration : 103	RTL : 0.967341594445	# of leaves remain : 258	Pruned leaf : TS-95
+Iteration : 104	RTL : 0.966846877627	# of leaves remain : 257	Pruned leaf : TS-70
+Iteration : 105	RTL : 0.966351961057	# of leaves remain : 256	Pruned leaf : TS-197
+Iteration : 106	RTL : 0.965841101779	# of leaves remain : 255	Pruned leaf : TS-72
+Iteration : 107	RTL : 0.965328683007	# of leaves remain : 254	Pruned leaf : TS-140
+Iteration : 108	RTL : 0.964815203316	# of leaves remain : 253	Pruned leaf : TS-9
+Iteration : 109	RTL : 0.964291488687	# of leaves remain : 252	Pruned leaf : TS-27
+Iteration : 110	RTL : 0.963759391058	# of leaves remain : 251	Pruned leaf : TS-1_TS-1
+Iteration : 111	RTL : 0.963221921841	# of leaves remain : 250	Pruned leaf : TS-226
+Iteration : 112	RTL : 0.962680478784	# of leaves remain : 249	Pruned leaf : TS-6
+Iteration : 113	RTL : 0.962130601902	# of leaves remain : 248	Pruned leaf : TS-218
+Iteration : 114	RTL : 0.961577100375	# of leaves remain : 247	Pruned leaf : TS-115
+Iteration : 115	RTL : 0.961016519613	# of leaves remain : 246	Pruned leaf : TS-120
+Iteration : 116	RTL : 0.960453437606	# of leaves remain : 245	Pruned leaf : TS-29
+Iteration : 117	RTL : 0.959883177551	# of leaves remain : 244	Pruned leaf : TS-200
+Iteration : 118	RTL : 0.959309120474	# of leaves remain : 243	Pruned leaf : TS-55
+Iteration : 119	RTL : 0.958724893519	# of leaves remain : 242	Pruned leaf : TS-117
+Iteration : 120	RTL : 0.958134469817	# of leaves remain : 241	Pruned leaf : TS-91
+Iteration : 121	RTL : 0.957535052523	# of leaves remain : 240	Pruned leaf : TS-230
+Iteration : 122	RTL : 0.956930317042	# of leaves remain : 239	Pruned leaf : TS-286
+Iteration : 123	RTL : 0.956323483556	# of leaves remain : 238	Pruned leaf : TS-69
+Iteration : 124	RTL : 0.955712572118	# of leaves remain : 237	Pruned leaf : TS-160
+Iteration : 125	RTL : 0.955097896720	# of leaves remain : 236	Pruned leaf : TS-302
+Iteration : 126	RTL : 0.954480941666	# of leaves remain : 235	Pruned leaf : TS-278
+Iteration : 127	RTL : 0.953856251630	# of leaves remain : 234	Pruned leaf : TS-219
+Iteration : 128	RTL : 0.953228997867	# of leaves remain : 233	Pruned leaf : TS-78
+Iteration : 129	RTL : 0.952599050839	# of leaves remain : 232	Pruned leaf : TS-225
+Iteration : 130	RTL : 0.951962611462	# of leaves remain : 231	Pruned leaf : TS-281
+Iteration : 131	RTL : 0.951325513117	# of leaves remain : 230	Pruned leaf : TS-165
+Iteration : 132	RTL : 0.950686666671	# of leaves remain : 229	Pruned leaf : TS-88
+Iteration : 133	RTL : 0.950047298597	# of leaves remain : 228	Pruned leaf : TS-172
+Iteration : 134	RTL : 0.949395512932	# of leaves remain : 227	Pruned leaf : TS-320
+
+out_tomato/after_tomato.tsv was saved.
+out_tomato/after_tomato_remaining_leaves.txt was saved.
+out_tomato/after_tomato_pruned_leaves.txt was saved.
+out_tomato/after_tomato_tree.newick was saved.
+
+Output file name :
+===============================================================
+ * Execution log            : out_tomato/after_tomato.log
+ * Output TSV               : out_tomato/after_tomato.tsv
+ * List of remaining leaves : out_tomato/after_tomato_remaining_leaves.txt
+ * List of pruned leaves    : out_tomato/after_tomato_pruned_leaves.txt
+ * Pruned tree              : out_tomato/after_tomato_tree.newick
+===============================================================
+
+PROGRAM FINISHED !!!
+
+Total elapsed time : 0.367 sec.
