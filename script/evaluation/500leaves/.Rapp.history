@@ -1,0 +1,265 @@
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar()
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip()
+plot
+library( "ggthemes" )
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc()
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + scale_colour_manual(values = c("red", "blue", "green", "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + scale_colour_manual(values = c("red", "blue", "green", "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + scale_colour_manual(values = c( "Underweight" = "red", "Healtyweight" = "blue", "Overweight" = "green", "Obesity" = "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + scale_fill_manual(values = c( "Underweight" = "red", "Healtyweight" = "blue", "Overweight" = "green", "Obesity" = "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + scale_fill_manual(values = c( "Underweight" = "red", "Healthyweight" = "blue", "Overweight" = "green", "Obesity" = "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + lab_x( "" ) + lab_y( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "red", "Healthyweight" = "blue", "Overweight" = "green", "Obesity" = "yellow" ) )
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "red", "Healthyweight" = "blue", "Overweight" = "green", "Obesity" = "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "red", "Healthyweight" = "blue", "Overweight" = "green", "Obesity" = "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "blue", "Overweight" = "green", "Obesity" = "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "red", "Healthyweight" = "#B8F1B0", "Overweight" = "green", "Obesity" = "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "green", "Obesity" = "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "yellow" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) ) + scale_fill_discrete(name = "New Legend Title")
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) ) + labs( fill = "New Legend Title")
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) ) + labs( fill = "State" )
+plot
+ggsave( filename = "barplot.png", units = "px", width = 2000, height = 600 )
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) ) + labs( fill = "State" ) + theme( rect = element_rect( fill = "transparent" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) ) + labs( fill = "State" ) + theme( rect = element_rect( fill = "transparent" ) )
+ggsave( filename = "barplot.png", units = "px", width = 2000, height = 600 )
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data, colour = "black" ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) ) + labs( fill = "State" ) + theme( rect = element_rect( fill = "transparent" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) ) + labs( fill = "State" ) + theme( rect = element_rect( fill = "transparent" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill", colour = "black" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) ) + labs( fill = "State" ) + theme( rect = element_rect( fill = "transparent" ) )
+plot
+plot <- ggplot( data = dat_f, aes( x = names, fill = raw_data ) ) + geom_bar( position = "fill", colour = "black" ) + coord_flip() + theme_hc() + ggtitle( "BMI status of UK children" ) + xlab( "" ) + ylab( "Percentage" ) + scale_fill_manual(values = c( "Underweight" = "#E3FCBF", "Healthyweight" = "#B8F1B0", "Overweight" = "#14C38E", "Obesity" = "#F55353" ) ) + labs( fill = "State" ) + theme( rect = element_rect( fill = "transparent" ) )
+plot
+ggsave( filename = "barplot.png", units = "px", width = 2000, height = 600 )
+devtools::session_info()
+library( devtools )
+install.packages( "devtools" )
+install.packages( "roxygen2" )
+install.packages( "testthat" )
+library(rmarkdown)
+library( devtools )
+install.packages(knitr)
+devtools::install_github("shin-kinos/ggcovcases")
+library( ggcovcases )
+help(ggcovcases)
+??ggcovcases
+help(ggcovcases::get_country_cases_data)
+help(ggcovcases::get_country_cases_data())
+help(get_country_cases_data())
+help(get_country_cases_data)
+plot <- plot_country_new_cases( country_name = "Japan" )
+plot
+devtools::install_github("shin-kinos/ggcovcases")
+devtools::install_github("shin-kinos/ggcovcases", force = TRUE )
+library( ggcovcases )
+dat <- get_country_cases_data(country_name=Taiwang,date=365)
+dat <- get_country_cases_data(country_name=Taiwang,dates=365)
+dat <- get_country_cases_data(country_name=Taiwang,days=365)
+dat <- get_country_cases_data(country_name=Taiwan,days=365)
+dat <- get_country_cases_data(country_name=Germany,days=365)
+dat <- get_country_cases_data(country_name=The United States,days=365)
+dat <- get_country_cases_data(country_name="Taiwan",days=365)
+dat <- get_country_cases_data(country_name="Taiwang",days=365)
+dat <- get_country_cases_data(country_name="The United States",days=365)
+dat <- get_country_cases_data(country_name="The United States of America",days=365)
+dat <- get_country_cases_data(country_name="The United Kingdom",days=365)
+plot_country_new_cases
+plot_country_new_cases( dat )
+plot_country_new_cases()
+plot_country_new_cases(days=120)
+plot_country_new_cases(days=365, axis_x_txt_size=365)
+plot_country_new_cases(days=365, axis_x_txt_size=1)
+plot_country_new_cases(days=365, axis_x_txt_size=1, country_name="Japan")
+plot_country_new_cases(days=365, axis_x_txt_size=2, country_name="Japan")
+plot_country_new_cases(days=365, axis_x_txt_size=3, country_name="Japan")
+plot_country_new_cases(days=365, axis_x_txt_size=4, country_name="Japan")
+library( "ggcovcases")
+plot_country_new_cases(days=365, axis_x_txt_size=4, country_name="Japan")
+plot_country_new_cases(days=120, axis_x_txt_size=4, country_name="Japan")
+plot_country_new_cases(days=120, axis_x_txt_size=4, country_name="Tailand")
+plot_country_new_cases(days=120, axis_x_txt_size=4, country_name="Thailand")
+plot_country_new_cases(days=365, axis_x_txt_size=4, country_name="Thailand")
+plot_country_new_cases(days=365, axis_x_txt_size=5, country_name="Thailand")
+plot_country_new_cases(days=365, axis_x_txt_size=6, country_name="Thailand")
+plot_country_new_cases(days=365, axis_x_txt_size=7, country_name="Thailand")
+plot_country_new_cases(days=365, axis_x_txt_size=8, country_name="Thailand")
+plot_country_new_cases(days=365, axis_x_txt_size=8, country_name="Japan")
+plot_country_new_cases(days=365, axis_x_txt_size=8, country_name="The United Kingdom" )
+library(tidyverse)
+graph <- play_erdos_renyi(n = 10, p = 0.2) %>% #
+  activate(nodes) %>% #
+  mutate(class = sample(letters[1:4], n(), replace = TRUE)) %>% #
+  activate(edges) %>% #
+  arrange(.N()$class[from])
+z = c(4,-1,-2,0)
+sum(z)
+norm = 1 / sum(z)
+norm
+dat <- c(1,2,3,4,5)
+mean(dat)
+sum( abs( dat -3 ) )
+var(dat)
+source("/Users/shintarokinoshita/Desktop/aaa.R")
+package.version( ggplot2)
+packageVersion( "ggplot2" )
+packageVersion( "ggplot2","ggthemes",  #
+"patchwork" ,#
+"scales"    ,#
+"ggbeeswarm",#
+"ggrepel"   ,#
+"pvclust"   ,#
+"cluster"   ,#
+"factoextra",#
+"generics",  #
+"timetk" ,   #
+"ggdendro",   )
+packageVersion( "ggplot2", "ggthemes" )
+packageVersion( c("ggplot2", "ggthemes") )
+packageVersion( "ggthemes" )
+packageVersion( "patchwork" )
+packageVersion( "scales" )
+packageVersion( "ggbeeswarm" )
+packageVersion( "ggrepel" )
+packageVersion( "pvclust" )
+packageVersion( "cluster" )
+packageVersion( "factoextra" )
+packageVersion( "generics" )
+packageVersion( "timetk" )
+packageVersion( "ggdendro" )
+33989654 / 37763959
+30756621 / 42985365
+top
+top()
+install.packages( "NCmisk" )
+install.packages(c("caret", "colorRamps", "Boruta", "corrplot", "doParallel", "e1071", "foreach", "glmnet", "mixOmics", "neuralnet" ,#
+"openxlsx", "pls", "plyr", "randomForest", "rpart", "shape", "tools", "viridis", "xgboost"))
+data <- data.frame( ABC = sample( 1:20, 10, replace = T ),  DEF = sample( 1:20, 10, replace = T ),  GHI = sample( 1:20, 10, replace = T ),  JKL = sample( 1:20, 10, replace = T ) )
+data
+data$ABC
+Index = "ABC"
+Index
+data$Index
+data${Index}
+data$'Index'
+data$Index
+Index
+data[ , "ABC" ]
+data[ , Index ]
+packageVersion( "caret" )
+packageVersion( "neuralnet" )
+packageVersion( "colorRamps" )
+packageVersion( "openxlsx" )
+packageVersion( "Boruta" )
+packageVersion( "pls" )
+packageVersion( "configr" )
+packageVersion( "plyr" )
+packageVersion( "corrplot" )
+packageVersion( "randomForest" )
+packageVersion( "doParallel" )
+packageVersion( "rpart" )
+packageVersion( "e1071" )
+packageVersion( "shape" )
+packageVersion( "foreach" )
+packageVersion( "tools" )
+packageVersion( "glmnet " )
+packageVersion( "glmnet" )
+packageVersion( "viridis" )
+packageVersion( "mixOmics" )
+packageVersion( "xgboost" )
+1.0 / 5
+1.0^(-5)
+1.0^(55)
+1.0 / log(5)
+1.0 / 5
+1.0 / 10^5
+1.0 / 10^2
+1.0 / e^2
+1.0 / log(5)
+1.0 * log(5)
+3^2
+1/5
+1/25
+raw_data <- read.tsv( 'eval_prototype.tsv', header = TRUE )
+raw_data <- read.table( 'eval_prototype.tsv', header = TRUE )
+raw_data <- as.dataframe( raw_data)
+raw_data <- dataframe( raw_data)
+raw_data <- dataflame( raw_data)
+raw_data <- as.data.frame( raw_data)
+str(raw_data)
+library( ggplot2 )
+df <- raw_data
+plot <- ggplot( data = df, aes( x = BranchLength, group = State) )
+plot <- ggplot( data = df, aes( x = BranchLength, group = State ) )
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- plot + geom_boxplot()
+plot
+plot <- plot + geom_boxplot() + geom_jitter( colour = 'black')
+plot
+library( ggbeeswarm )
+library( ggbeesworm )
+library(ggbeeswarm)
+install.packages( "ggbeeswarm" )
+library(ggbeeswarm)
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- plot + geom_boxplot() + geom_beeswarm( colour = 'black')
+plot
+plot <- plot + geom_boxplot() + geom_beeswarm( colour = 'black', size = .2)
+plot
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- plot + geom_boxplot() + geom_beeswarm( colour = 'black', size = .2)
+plot
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- plot + geom_boxplot() + geom_jitter( colour = 'black', size = .5 )
+plot
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- plot + geom_boxplot() + geom_beeswarm( colour = 'black', size = .2, alpha = .9 )
+plot
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- plot + geom_boxplot() + geom_beeswarm( colour = 'black', size = .5, alpha = .9 )
+plot
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- plot + geom_boxplot() + geom_jitter( colour = 'black', size = .5 )
+plot <- plot + geom_boxplot( outlier.shape = NA ) + geom_jitter( colour = 'black', size = .5 )
+plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+gg_plot <- ggplot( data = df, aes( x = State, y = BranchLength, fill = State ) )
+plot <- gg_plot + geom_boxplot( outlier.shape = NA ) + geom_jitter( colour = 'black', size = .5 )
+plot
+plot <- gg_plot + geom_boxplot( outlier.shape = NA ) + geom_jitter( colour = 'black', size = .8 )
+plot
+plot <- gg_plot + geom_violin( outlier.shape = NA) + geom_jitter( colour = 'black', size = .8 )
+plot <- gg_plot + geom_violin() + geom_jitter( colour = 'black', size = .8 )
+plot
+plot <- gg_plot + geom_violin() + geom_jitter( colour = 'black', size = .5 )
+plot
+plot <- gg_plot + geom_violin() + geom_jitter( colour = 'black', size = .2 )
+plot
+plot <- gg_plot + geom_violin() + geom_jitter( colour = 'black', size = .5 )
+plot
+plot <- gg_plot + geom_violin() + geom_jitter( colour = 'black', size = .5, alpha = 0.1 )
+plot
+plot <- gg_plot + geom_violin() + geom_jitter( colour = 'black', size = .5, alpha = 0.2 )
+plot
