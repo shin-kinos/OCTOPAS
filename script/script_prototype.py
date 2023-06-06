@@ -5,7 +5,7 @@ import time               # For elapse time reporting
 from   enum import Enum   # For Enum error handling
 import phylotreelib as pt # Package for tree handling
 
-VERSION = '0.1.2'      # Current version of program
+VERSION = '0.1.3'      # Current version of program
 ARG_S   = False        # Global variable of argument '--silent', True or False, default False
 EXE_LOG = ''           # Global variable of execution log
 TSV_LOG = ''           # Global variable of output TSV file
@@ -53,9 +53,12 @@ def print_help( script_name ):
     print( '-f | --format     <String>     Format of input file:\n'           \
            '                                   * newick = Newick (default)\n' \
            '                                   * nexus  = NEXUS' )
-    print( '-n | --NL         <Integer>    Number of leaves remain, more than 0, default 3' )
+    print( '-n | --NL         <Integer>    Number of leaves remain, 3 or more, default 3' )
     print( '-r | --RTL        <Real>       Threshold of relative tree length, at range of [0, 1], default 0.95' )
-    print( '-R | --resolution <Integer>    resolution of leaf pruning, more than 0, default 1' )
+    print( '-F | --outfmt     <String>     Format of output file:\n'          \
+           '                                   * newick = Newick (default)\n' \
+           '                                   * nexus  = NEXUS' )
+    print( '-R | --resolution <Integer>    resolution of leaf pruning, 1 or more, default 1' )
     print( '-s | --silent     <Flag>       If true, program does not show any logs on terminal during calculation' )
     print( '-v | --version    <Flag>       Print current version, ignore all other arguments' )
     print( '-h | --help       <Flag>       Print this help, ignore all other arguments' )
@@ -64,13 +67,15 @@ def print_help( script_name ):
 # Error handling
 # Enum of error cases
 class Error( Enum ):
-    NO_INPUT_FILE  = 'Input file name is required.'
-    NO_OUTPUT_FILE = 'Output file name is required.'
-    NL_NOT_INT     = 'Option -n or --NL must be integer number.'
-    RTL_NOT_REAL   = 'Option -r or --RTL must be real number.'
-    RES_NOT_INT    = 'Option -R or --resolution must be integer number.'
-    NL_TOO_SMALL   = 'Option -n or -NL must be 3 or more'
-    RTL_OUT_RANGE  = 'Option -r or --RTL must be at range of [0, 1].'
+    NO_INPUT_FILE    = 'Input file name is required.'
+    NO_OUTPUT_FILE   = 'Output file name is required.'
+    NL_NOT_INT       = 'Option -n or --NL must be integer number.'
+    RTL_NOT_REAL     = 'Option -r or --RTL must be real number.'
+    RES_NOT_INT      = 'Option -R or --resolution must be integer number.'
+    NL_TOO_SMALL     = 'Option -n or -NL must be 3 or more'
+    RTL_OUT_RANGE    = 'Option -r or --RTL must be at range of [0, 1].'
+    INFMT_INCORRECT  = 'Option -f or --format must be \'newick\' or \'nexus\'.'
+    OUTFMT_INCORRECT = 'Option -F or --outfmt must be \'newick\' or \'nexus\'.'
 
 # Error bombing function using Enum 'Error'
 def error_bomb( MESSAGE ):
@@ -110,6 +115,7 @@ class Options:
         format   = 'newick', # Input file format, default newick
         nl       = '3',      # Number of leaes remain, default 3
         rtl      = '0.95',   # Threshold of RTL, default 0.95
+        outfmt   = 'newick', # Output file format, default newick
         res      = '1',      # Resolution of lraf pruning, default 1
         nl_flag  = False,    # Flag if '-n' appears in arguments
         rtl_flag = False,    # Flag if '-r' appears in arguments
@@ -124,6 +130,7 @@ class Options:
         self.format   = format
         self.nl       = nl
         self.rtl      = rtl
+        self.outfmt   = outfmt
         self.res      = res
         self.nl_flag  = nl_flag
         self.rtl_flag = rtl_flag
@@ -145,6 +152,7 @@ class Options:
             elif ( argv[ i ] == '-f' or argv[ i ] == '--format'     ): self.format = argv[ i + 1 ]; i += 2
             elif ( argv[ i ] == '-n' or argv[ i ] == '--NL'         ): self.nl     = argv[ i + 1 ]; i += 2
             elif ( argv[ i ] == '-r' or argv[ i ] == '--RTL'        ): self.rtl    = argv[ i + 1 ]; i += 2
+            elif ( argv[ i ] == '-F' or argv[ i ] == '--outfmt'     ): self.outfmt = argv[ i + 1 ]; i += 2
             elif ( argv[ i ] == '-R' or argv[ i ] == '--resolution' ): self.res    = argv[ i + 1 ]; i += 2
             elif ( argv[ i ] == '-s' or argv[ i ] == '--silent'     ): self.silent = True; i += 1
             elif ( argv[ i ] == '-v' or argv[ i ] == '--version'    ): print_version()
@@ -161,7 +169,7 @@ class Options:
 
         # Set global variables
         global ARG_S
-        ARG_S   = self.silent
+        ARG_S = self.silent
 
         # Check if input and output file names are given
         if ( self.input  is None ): error_bomb( Error.NO_INPUT_FILE  )
@@ -175,6 +183,12 @@ class Options:
 
         # Check if '--resolution' is not integer
         if ( ( self.res ).isdigit() == False ): error_bomb( Error.RES_NOT_INT )
+
+        # Check if '--format' is 'newick' or 'nexus'
+        if ( self.format != 'newick' and self.format != 'nexus' ): error_bomb( Error.INFMT_INCORRECT )
+
+        # Check if '--outfmt' is 'newick' or 'nexus'
+        if ( self.outfmt != 'newick' and self.outfmt != 'nexus' ): error_bomb( Error.OUTFMT_INCORRECT )
 
         # Check if '-n', '-r' or '-R' exist in arguments
         if ( '-n' in self.args or '--NL'         in self.args ): self.nl_flag  = True
@@ -545,18 +559,19 @@ class Pruner( Tree ):
 class Output():
     def __init__(
         self,
-        out_prefix        = None, # Prefix of output files
-        out_dir_name      = '',   # Output directory name
-        out_execute_log   = '',   # Execute log file name
-        out_tsv_log       = '',   # TSV data file name
-        out_remain_leaves = '',   # List of remaining leaves
-        out_pruned_leaves = '',   # List of pruned leaves
-        out_tree          = None, # Output pruned tree
-        fout_log          = None, # Output file for exe log
-        fout_tsv          = None, # Output file for STV
-        fout_remain       = None, # Output file for remaining list
-        fout_pruned       = None, # Output file for pruned leaves list
-        fout_tree         = None  # Output file for pruned tree
+        out_prefix        = None,    # Prefix of output files
+        out_dir_name      = '',      # Output directory name
+        out_execute_log   = '',      # Execute log file name
+        out_tsv_log       = '',      # TSV data file name
+        out_remain_leaves = '',      # List of remaining leaves
+        out_pruned_leaves = '',      # List of pruned leaves
+        out_tree          = None,    # Output pruned tree
+        fout_log          = None,    # Output file for exe log
+        fout_tsv          = None,    # Output file for STV
+        fout_remain       = None,    # Output file for remaining list
+        fout_pruned       = None,    # Output file for pruned leaves list
+        fout_tree         = None,    # Output file for pruned tree
+        fout_tree_format  = 'newick' # Output file for pruned tree format, default newick
     ):
         self.out_prefix        = out_prefix
         self.out_dir_name      = out_dir_name
@@ -570,8 +585,9 @@ class Output():
         self.fout_remain       = fout_remain
         self.fout_pruned       = fout_pruned
         self.fout_tree         = fout_tree
+        self.fout_tree_format  = fout_tree_format
 
-    def setOutputFileNames( self, output, outdir ):
+    def setOutputFileNames( self, output, outdir, outfmt ):
         #global OUTPUT, OUT_DIR
         self.out_prefix   = output
         self.out_dir_name = outdir
@@ -584,7 +600,9 @@ class Output():
         elif ( self.out_dir_name != '' and os.path.exists( self.out_dir_name ) == True ):
             if ( self.out_dir_name[ -1 ] != '/' ): self.out_dir_name += '/'
 
-        extension = 'newick'
+        # Record output file format and extension
+        self.fout_tree_format = outfmt
+        extension             = outfmt
 
         # Set output files name
         self.out_execute_log   = self.out_dir_name + self.out_prefix + '.log'
@@ -620,8 +638,12 @@ class Output():
 
     # Save output tree
     def saveTree( self, pruned_tree ):
-        with open( self.out_pruned_tree, 'w' ) as outfile:
-            outfile.write( pruned_tree.newick() )
+        if ( self.fout_tree_format == 'newick' ):
+            with open( self.out_pruned_tree, 'w' ) as outfile:
+                outfile.write( pruned_tree.newick() )
+        elif ( self.fout_tree_format == 'nexus' ):
+            with open( self.out_pruned_tree, 'w' ) as outfile:
+                outfile.write( pruned_tree.nexus() )
         print_log( self.out_pruned_tree + ' was saved.' )
 
     # Close output files
@@ -655,7 +677,7 @@ def main():
 
     # Set output files info
     output = Output()
-    output.setOutputFileNames( options.output, options.outdir )
+    output.setOutputFileNames( options.output, options.outdir, options.outfmt )
 
     # Get phylogenetic tree
     tree = Pruner()
