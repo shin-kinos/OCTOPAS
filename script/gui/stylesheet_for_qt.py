@@ -37,7 +37,7 @@ input_txt_field = '''
     border-style     : solid;
     border-width     : 3px;
     border-radius    : 3px;
-    font-size        : 18px;
+    font-size        : 16px;
 '''
 
 example_cbox = '''
@@ -47,7 +47,42 @@ example_cbox = '''
     font-style       : italic;
 '''
 
-button_run = '''
+button_run_disable = '''
+    color            : #73777B;
+    background-color : transparent;
+    border-color     : #73777B;
+    border-style     : solid;
+    border-width     : 2px;
+    border-radius    : 6px;
+    font-size        : 20px;
+    font-weight      : bold;
+    font-style       : italic;
+'''
+
+button_run_able = '''
+    color            : white;
+    background-color : #24A19C;
+    border-color     : #24A19C;
+    border-style     : solid;
+    border-width     : 2px;
+    border-radius    : 6px;
+    font-size        : 20px;
+    font-weight      : bold;
+    font-style       : italic;
+'''
+
+button_download_disable = '''
+    color            : #73777B;
+    background-color : transparent;
+    border-color     : #73777B;
+    border-style     : solid;
+    border-width     : 2px;
+    border-radius    : 6px;
+    font-size        : 20px;
+    font-style       : italic;
+'''
+
+button_download_able = '''
     color            : white;
     background-color : #24A19C;
     border-color     : #24A19C;
@@ -55,7 +90,6 @@ button_run = '''
     border-width     : 1px;
     border-radius    : 6px;
     font-size        : 20px;
-    font-weight      : bold;
     font-style       : italic;
 '''
 
@@ -70,9 +104,24 @@ combobox = '''
     font-style       : italic;
 '''
 
+linetextbox = '''
+    color            : #24A19C;
+    background-color : transparent;
+    border-color     : #24A19C;
+    border-style     : solid;
+    border-width     : 2px;
+    border-radius    : 6px;
+    font-size        : 20px;
+    font-style       : italic;
+'''
+
+option_title = '''
+    color     : #73777B;
+    font-size : 24px;
+'''
+
 option_msg = '''
     color            : #73777B;
     background-color : transparent;
     font-size        : 20px;
-    font-style       : italic;
 '''
