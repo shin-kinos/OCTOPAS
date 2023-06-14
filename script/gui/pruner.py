@@ -233,15 +233,13 @@ class Options:
 class Options:
     def __init__(
         self,
-        input    = '',       # Input tree information
-        nl       = '3',      # Number of leaves remain, default 3
-        rtl      = '0.95',   # Threshold of RTL, default 0.95
-        res      = '1',      # Resolution of leaf pruning, default 1
+        nl       = 3,        # Number of leaves remain, default 3
+        rtl      = 0.95,     # Threshold of RTL, default 0.95
+        res      = 1,        # Resolution of leaf pruning, default 1
         use_nl   = False,    # Whether NL are used as stop option, default False
         #format   = 'newick', # Input file format, default newick
         #outfmt   = 'newick', # Output file format, default newick
     ):
-        self.input    = input
         self.nl       = nl
         self.rtl      = rtl
         self.res      = res
@@ -251,12 +249,36 @@ class Options:
 
     def setOptions(
         self,
-        input_tree,
         stop_option,
         threshold,
         resolution
     ):
-        print( 'Hello' )
+        # Set stop option and its threshold
+        if ( stop_option == '# of leaves remain' ):
+            self.use_nl = True
+            self.nl     = int( threshold )
+        elif ( stop_option == 'Relative tree length' ):
+            self.use_nl = False
+            self.rtl    = float( threshold )
+
+        # Set resolution
+        self.res = int( resolution )
+
+    def showOptions( self ):
+        # Make message for stop option
+        stop_option = ''
+        if   ( self.use_nl == True  ): stop_option = ' * Stop option (NL)  : ' + str( self.nl  )
+        elif ( self.use_nl == False ): stop_option = ' * Stop option (RTL) : ' + str( self.rtl )
+
+        # Make message for resolution
+        resolution  = ' * Resolution        : ' + str( self.res )
+
+        # Show options
+        print( '\nParameter set :'                                               )
+        print( '===============================================================' )
+        print(  stop_option                                                      )
+        print(  resolution                                                       )
+        print( '===============================================================' )
 
 # Elapsed time handling
 class Time:
@@ -581,6 +603,7 @@ class Pruner( Tree ):
 #                      CLASSES FOR OUTPUT FILES HANDING                       #
 # --------------------------------------------------------------------------- #
 
+'''
 class Output():
     def __init__(
         self,
@@ -688,6 +711,28 @@ class Output():
         print_log( ' * List of pruned leaves    : ' + self.out_pruned_leaves         )
         print_log( ' * Pruned tree              : ' + self.out_pruned_tree           )
         print_log( '===============================================================' )
+'''
+
+class Output():
+    def __init__(
+        self,
+        out_remain_leaves_str = '',      # List of remaining leaves as string
+        out_tree_str          = '',      # Output file for pruned tree
+        #out_tree_format       = 'newick' # Output file for pruned tree format, default newick
+    ):
+
+        self.out_remain_leaves_str = out_remain_leaves_str
+        self.out_tree_str          = out_tree_str
+        #self.out_tree_format       = out_tree_format
+
+    def LeavesListToString( self, remain_Leaevs ):
+        # Concat all leaves into string with '\n'
+        for leaf in remain_Leaevs:
+            self.out_remain_leaves_str += leaf + '\n'
+        return( self.out_remain_leaves_str )
+
+    def PrunedTreeToString( self, pruned_tree ):
+        return( pruned_tree.newick() )
 
 def run_pruner(
     input_tree,
@@ -702,15 +747,12 @@ def run_pruner(
     # Set options
     options = Options()
     options.setOptions(
-        input_tree,
         stop_option,
         threshold,
         resolution
     )
-    '''
-    options.checkOptions()
+    #options.checkOptions()
     options.showOptions()
-    '''
 
     '''
     # Set output files info
@@ -720,20 +762,24 @@ def run_pruner(
 
     # Get phylogenetic tree
     tree = Pruner()
-    tree.readTree( input_tree ) # options.input, options.format
+    tree.readTree( input_tree )
     tree.getLeavesList()
     tree.midPointRooting()
     tree.detectRootNode()
     tree.calculateTreeStatistics()
     tree.showTreeStatistics()
 
-    '''
     # Now pruning time! 😁
     tree.setInitialTreeInfo()
-    tree.setStopOptions( int( options.nl ), float( options.rtl ) )
-    if   ( options.res_flag == True  ): tree.pruneWithFastMode(    options.use_nl, int( options.res ) )
-    elif ( options.res_flag == False ): tree.pruneWithDefaultMode( options.use_nl )
-    '''
+    tree.setStopOptions( options.nl, options.rtl )
+    if   ( options.res  > 1 ): tree.pruneWithFastMode(    options.use_nl, options.res )
+    elif ( options.res == 1 ): tree.pruneWithDefaultMode( options.use_nl )
+
+    output = Output()
+    out_remain_leaves_str = output.LeavesListToString( tree.remain_leaves )
+    #print( out_remain_leaves_str )
+    out_pruned_tree_str   = output.PrunedTreeToString( tree.pruned_tree   )
+    #print( out_pruned_tree_str )
 
     '''
     # Save output files
@@ -750,12 +796,14 @@ def run_pruner(
     output.closeFiles()
     '''
 
+    finish_program()
+
     # Elapsed time : END
     time.endTime()
     time.calcElapsedTime()
     time.showElapsedTime()
 
-    return( 'This is list of remaining tree!', 'This is pruned tree!' )
+    return( out_remain_leaves_str, out_pruned_tree_str )
 
 '''
 if __name__ == '__main__':

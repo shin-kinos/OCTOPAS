@@ -20,6 +20,7 @@ from pathlib      import Path
 import stylesheet_for_qt as st
 import pruner
 import utils
+import example
 
 # -------------------------- WIDGETS STYLE PARAMETERS -------------------------- #
 WINDOW_WIDTH      = 900
@@ -100,7 +101,6 @@ class textBoxForOptions( QLineEdit ):
         self.setAlignment( Qt.AlignmentFlag.AlignCenter )
         self.setFixedSize( QSize( OPT_BUTTON_WIDTH, FIN_BUTTON_HEIGHT ) )
 
-
 # Class for option message style
 class optionMessageLabel( QLabel ):
     def __init__( self ):
@@ -126,7 +126,17 @@ class showOptionError( QMessageBox ):
     def __init__( self, message ):
         super().__init__()
         self.setWindowTitle( 'OPTION ERROR' )
+        self.setIcon( QMessageBox.Icon.Warning )
         self.setText( 'OPTION ERROR: ' + message )
+        self.exec()
+
+# Class for finish program dialog
+class showFinishDialog( QMessageBox ):
+    def __init__( self ):
+        super().__init__()
+        self.setWindowTitle( 'FINISH DIALOG' )
+        self.setIcon( QMessageBox.Icon.Information )
+        self.setText( 'Program Finished!' )
         self.exec()
 
 # Class of main central part of app
@@ -173,8 +183,8 @@ class mainApp( QWidget ):
         button_fin.setToolTip( 'This is a tooltip for the QPushButton widget' )
 
         # Checkbox of using example data set
-        example_cbox = QCheckBox( ' Use example data?' )
-        example_cbox.setStyleSheet( st.example_cbox )
+        self.example_cbox = QCheckBox( ' Use example data?', clicked = self.getExampleTree )
+        self.example_cbox.setStyleSheet( st.example_cbox )
 
         # Set input text field 
         self.input_content = inputContentLabel()
@@ -235,7 +245,7 @@ class mainApp( QWidget ):
         layout.addWidget( title,                  0, 0, 1, 1 )
         layout.addWidget( source,                 1, 0, 1, 1 )
         layout.addWidget( button_fin,             2, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft )
-        layout.addWidget( example_cbox,           3, 0, 1, 1 )
+        layout.addWidget( self.example_cbox,      3, 0, 1, 1 )
         layout.addWidget( self.input_content,     4, 0, 1, 1 )
         layout.addWidget( option_title,           5, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
         layout.addWidget( option_stop_msg,        6, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
@@ -256,6 +266,9 @@ class mainApp( QWidget ):
             file_path = Path( file_name )
             # Read file and save content
             file_content = utils.read_newick( file_path )
+            # Clear input textbox 
+            ( self.input_content ).clear()
+            # Set new tree data
             ( self.input_content ).setText( file_content )
             # Activate run button
             self.button_run.setEnabled( True )
@@ -265,6 +278,28 @@ class mainApp( QWidget ):
             self.button_dl_tree.setEnabled(   False )
             if ( self.button_dl_leaves.isEnabled() == False ): self.button_dl_leaves.setStyleSheet( st.button_download_disable )
             if ( self.button_dl_tree.isEnabled()   == False ): self.button_dl_tree.setStyleSheet(   st.button_download_disable )
+
+    def getExampleTree( self ):
+        if ( ( self.example_cbox ).isChecked() == True ):
+            # Clear input textbox at the first place
+            ( self.input_content ).clear()
+            # Get example tree and set text
+            example_tree = example.example_tree
+            ( self.input_content ).setText( example_tree )
+            # Activate run button
+            self.button_run.setEnabled( True )
+            if ( self.button_run.isEnabled() == True ): self.button_run.setStyleSheet( st.button_run_able )
+        elif ( ( self.example_cbox ).isChecked() == False ):
+            # Clear text box
+            ( self.input_content ).clear()
+            # Disable run button
+            self.button_run.setEnabled( False )
+            if ( self.button_run.isEnabled() == False ): self.button_run.setStyleSheet( st.button_run_disable )
+        # Disable download buttons
+        self.button_dl_leaves.setEnabled( False )
+        self.button_dl_tree.setEnabled(   False )
+        if ( self.button_dl_leaves.isEnabled() == False ): self.button_dl_leaves.setStyleSheet( st.button_download_disable )
+        if ( self.button_dl_tree.isEnabled()   == False ): self.button_dl_tree.setStyleSheet(   st.button_download_disable )
 
     def runProgram( self ):
         # Check parameters
@@ -280,11 +315,13 @@ class mainApp( QWidget ):
             if ( self.button_run.isEnabled() == False ): self.button_run.setStyleSheet( st.button_run_disable )
             # Run pruner
             self.output_leaves, self.output_tree = pruner.run_pruner(
-                ( self.input_content ).toPlainText(),
+                ( self.input_content   ).toPlainText(),
                 ( self.option_stop_opt ).currentText(),
                 ( self.option_thresh   ).text(),
                 ( self.option_resol    ).text()
             )
+            # Show finish dialog
+            showFinishDialog()
             # Activate download buttons
             self.button_dl_leaves.setEnabled( True )
             self.button_dl_tree.setEnabled( True )

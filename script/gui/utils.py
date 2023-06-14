@@ -1,5 +1,4 @@
 
-
 # Input read newick file
 def read_newick( file_path ):
     fin = open( file_path, 'r' )
@@ -12,9 +11,9 @@ def check_options(
     threshold,
     resolution
 ):
-    print( stop_option )
-    print( threshold   )
-    print( resolution  )
+    #print( stop_option )
+    #print( threshold   )
+    #print( resolution  )
 
     if ( stop_option == 'Relative tree length' and threshold.replace( '.', '', 1 ).isdigit() == False ):
         return( 'error', 'Threshold of RTL must be real number.' )
