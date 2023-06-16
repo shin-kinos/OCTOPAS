@@ -40,6 +40,17 @@ input_txt_field = '''
     font-size        : 16px;
 '''
 
+button_clear = '''
+    color            : #24A19C;
+    background-color : transparent;
+    border-color     : #24A19C;
+    border-style     : solid;
+    border-width     : 2px;
+    border-radius    : 5px;
+    font-size        : 16px;
+    font-style       : italic;
+'''
+
 example_cbox = '''
     color            : #73777B;
     background-color : transparent;
@@ -124,4 +135,18 @@ option_msg = '''
     color            : #73777B;
     background-color : transparent;
     font-size        : 20px;
+'''
+
+help_tooltip = '''
+    QLabel {
+        color            : #24A19C;
+        background-color : transparent;
+        font-size        : 20px;
+        font-style       : italic;
+    }
+    QToolTip {
+        color            : white;
+        background-color : #060047;
+        font-size        : 16px;
+    }
 '''

@@ -1,244 +1,33 @@
 
-import os                 # For file operation
-import sys                # For command-line args
 import time               # For elapse time reporting
-from   enum import Enum   # For Enum error handling
 import phylotreelib as pt # Package for tree handling
 
-VERSION = '0.1.3'      # Current version of program
-ARG_S   = False        # Global variable of argument '--silent', True or False, default False
-EXE_LOG = ''           # Global variable of execution log
-TSV_LOG = ''           # Global variable of output TSV file
 DIGIT   = 6            # Global variable to round float values
 RED     = '\033[1;31m' # Escape sequence colour code : RED
 GREEN   = '\033[1;32m' # Escape sequence colour code : GREEN
 RESET   = '\033[0m'    # Reset escape sequence colour code
 
-''' These global variables are not used anymore !!!
-    OUTPUT  = None         # Global variable of output files name prefix
-    OUT_DIR = ''           # Glocal variable of output directory
-    YELLOW  = '\033[1;33m' # Escape sequence colour code : YELLOW
-    BLUE    = '\033[1;34m' # Escape sequence colour code : BLUE
-    PURPLE  = '\033[1;35m' # Escape sequence colour code : PURPLE
-    CYAN    = '\033[1;36m' # Escape sequence colour code : CYAN
-'''
-
 # --------------------------------------------------------------------------- #
-#  GENERAL FUNCTIONS (EXECUTION LOGS, OPTIONS MENU AND ERROR HANDLING ETC.)   #
+#                  GENERAL FUNCTIONS (FINISH PROGRAM REPORT)                  #
 # --------------------------------------------------------------------------- #
-
-# Report log and print it if ARG_S = False
-def print_log( content ):
-    global EXE_LOG, ARG_S
-    EXE_LOG += content + '\n'
-    if ( ARG_S == False ): print( content )
-
-# Report log of TSV output
-def report_tsv( content ):
-    global TSV_LOG
-    TSV_LOG += content + '\n'
-
-# Print version
-def print_version():
-    global VERSION
-    print( VERSION )
-    sys.exit( 0 )
-
-# Print help
-def print_help( script_name ):
-    print( '\nUsage: %', script_name, '[Options] \n\n\nOptions :\n' )
-    print( '-i | --input      <String>     Input file name, REQUIRED' )
-    print( '-o | --output     <String>     Output file name prefix, REQUIRED' )
-    print( '-O | --outdir     <String>     Output directory name, if it is empty, all output files are saved in current directory' )
-    print( '-f | --format     <String>     Format of input file:\n'           \
-           '                                   * newick = Newick (default)\n' \
-           '                                   * nexus  = NEXUS' )
-    print( '-n | --NL         <Integer>    Number of leaves remain, 3 or more, default 3' )
-    print( '-r | --RTL        <Real>       Threshold of relative tree length, at range of [0, 1], default 0.95' )
-    print( '-F | --outfmt     <String>     Format of output file:\n'          \
-           '                                   * newick = Newick (default)\n' \
-           '                                   * nexus  = NEXUS' )
-    print( '-R | --resolution <Integer>    resolution of leaf pruning, 1 or more, default 1' )
-    print( '-s | --silent     <Flag>       If true, program does not show any logs on terminal during calculation' )
-    print( '-v | --version    <Flag>       Print current version, ignore all other arguments' )
-    print( '-h | --help       <Flag>       Print this help, ignore all other arguments' )
-    sys.exit( 0 )
-
-# Error handling
-# Enum of error cases
-class Error( Enum ):
-    NO_INPUT_FILE    = 'Input file name is required.'
-    NO_OUTPUT_FILE   = 'Output file name is required.'
-    NL_NOT_INT       = 'Option -n or --NL must be integer number.'
-    RTL_NOT_REAL     = 'Option -r or --RTL must be real number.'
-    RES_NOT_INT      = 'Option -R or --resolution must be integer number.'
-    NL_TOO_SMALL     = 'Option -n or -NL must be 3 or more'
-    RTL_OUT_RANGE    = 'Option -r or --RTL must be at range of [0, 1].'
-    INFMT_INCORRECT  = 'Option -f or --format must be \'newick\' or \'nexus\'.'
-    OUTFMT_INCORRECT = 'Option -F or --outfmt must be \'newick\' or \'nexus\'.'
-
-# Error bombing function using Enum 'Error'
-def error_bomb( MESSAGE ):
-    # Colorised message is shown on terminal
-    # And normal message is saved to log
-    global ARG_S
-    ARG_S = True
-
-    print( RED + '\n\nERROR !!!' + RESET )
-    print_log(   '\n\nERROR !!!'         )
-
-    print(     MESSAGE.value )
-    print_log( MESSAGE.value )
-
-    print( RED + '\nPROGRAM HALTED !!!' + RESET )
-    print_log(   '\nRPOGRAM HALTED !!!'         )
-
-    sys.exit( 1 )
 
 # Print 'PROGRAM FINISHED !!!'
 def finish_program():
-    global EXE_LOG, ARG_S
-    EXE_LOG += '\n' + 'PROGRAM FINISHED !!!' + '\n'
-    if ( ARG_S == False ): print( '\n' + GREEN + 'PROGRAM FINISHED !!!' + RESET )
+    print( '\n' + GREEN + 'PROGRAM FINISHED !!!' + RESET )
 
 # --------------------------------------------------------------------------- #
-#   GENERAL CLASSES (OPTION SETTING, FILE READING AND ERROR HANDLING ETC.)    #
+#             GENERAL CLASSES (OPTION SETTING AND TIME HANDLING)              #
 # --------------------------------------------------------------------------- #
-
-'''
-class Options:
-    def __init__(
-        self,
-        args     = list(),   # List of command-line arguments
-        input    = None,     # Input file name
-        output   = None,     # Output file name
-        outdir   = '',       # Output directory name
-        format   = 'newick', # Input file format, default newick
-        nl       = '3',      # Number of leaes remain, default 3
-        rtl      = '0.95',   # Threshold of RTL, default 0.95
-        outfmt   = 'newick', # Output file format, default newick
-        res      = '1',      # Resolution of lraf pruning, default 1
-        nl_flag  = False,    # Flag if '-n' appears in arguments
-        rtl_flag = False,    # Flag if '-r' appears in arguments
-        res_flag = False,    # Flag if '-R' appears in arguments
-        use_nl   = False,    # Whether NL are used as stop option, default False
-        silent   = False     # If program does not show logs
-    ):
-        self.args     = args
-        self.input    = input
-        self.output   = output
-        self.outdir   = outdir
-        self.format   = format
-        self.nl       = nl
-        self.rtl      = rtl
-        self.outfmt   = outfmt
-        self.res      = res
-        self.nl_flag  = nl_flag
-        self.rtl_flag = rtl_flag
-        self.res_flag = res_flag
-        self.use_nl   = use_nl
-        self.silent   = silent
-
-    def setOptions( self, argv ):
-        # If no arguments, print help
-        if ( len( argv ) == 1 ): print_help( argv[ 0 ] )
-        # Get command-line arguments
-        self.args = argv
-
-        i = 1
-        while ( i < len( argv ) ):
-            if   ( argv[ i ] == '-i' or argv[ i ] == '--input'      ): self.input  = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-o' or argv[ i ] == '--output'     ): self.output = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-O' or argv[ i ] == '--outdir'     ): self.outdir = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-f' or argv[ i ] == '--format'     ): self.format = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-n' or argv[ i ] == '--NL'         ): self.nl     = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-r' or argv[ i ] == '--RTL'        ): self.rtl    = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-F' or argv[ i ] == '--outfmt'     ): self.outfmt = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-R' or argv[ i ] == '--resolution' ): self.res    = argv[ i + 1 ]; i += 2
-            elif ( argv[ i ] == '-s' or argv[ i ] == '--silent'     ): self.silent = True; i += 1
-            elif ( argv[ i ] == '-v' or argv[ i ] == '--version'    ): print_version()
-            elif ( argv[ i ] == '-h' or argv[ i ] == '--help'       ): print_help( argv[ 0 ] )
-            else                                                     : print_help( argv[ 0 ] )
-
-    def checkOptions( self ):
-
-        # Set global variables
-        global ARG_S
-        ARG_S = self.silent
-
-        # Check if input and output file names are given
-        if ( self.input  is None ): error_bomb( Error.NO_INPUT_FILE  )
-        if ( self.output is None ): error_bomb( Error.NO_OUTPUT_FILE )
-
-        # Check if '--NL' is not integer
-        if ( ( self.nl ).isdigit() == False ): error_bomb( Error.NL_NOT_INT )
-
-        # Check if '--RTL' is not float
-        if ( ( self.rtl ).replace( '.', '', 1 ).isdigit() == False ): error_bomb( Error.RTL_NOT_REAL )
-
-        # Check if '--resolution' is not integer
-        if ( ( self.res ).isdigit() == False ): error_bomb( Error.RES_NOT_INT )
-
-        # Check if '--format' is 'newick' or 'nexus'
-        if ( self.format != 'newick' and self.format != 'nexus' ): error_bomb( Error.INFMT_INCORRECT )
-
-        # Check if '--outfmt' is 'newick' or 'nexus'
-        if ( self.outfmt != 'newick' and self.outfmt != 'nexus' ): error_bomb( Error.OUTFMT_INCORRECT )
-
-        # Check if '-n', '-r' or '-R' exist in arguments
-        if ( '-n' in self.args or '--NL'         in self.args ): self.nl_flag  = True
-        if ( '-r' in self.args or '--RTL'        in self.args ): self.rtl_flag = True
-        if ( '-R' in self.args or '--resolution' in self.args ): self.res_flag = True
-        #print( self.args )
-
-        # Check if '--NL' is 3 or more
-        if ( int( self.nl ) < 3 ): error_bomb( Error.NL_TOO_SMALL )
-
-        # Check if '--RTL' is at range of [0, 1].
-        if ( float( self.rtl ) <= 0.0 or float( self.rtl ) >= 1.0 ): error_bomb( Error.RTL_OUT_RANGE )
-
-        # If '-R' is 1, use pruneWithDefaultMode()
-        if ( self.res == '1' ): self.res_flag = False
-
-        # If both of stop options appear in arguments, RTL is prioritised
-        if   ( self.nl_flag == True  and self.rtl_flag == True  ): self.use_nl = False
-        elif ( self.nl_flag == True  and self.rtl_flag == False ): self.use_nl = True
-        elif ( self.nl_flag == False and self.rtl_flag == True  ): self.use_nl = False
-        elif ( self.nl_flag == False and self.rtl_flag == False ): self.use_nl = False
-        #print( 'self.use_nl =', self.use_nl )
-
-    def showOptions( self ):
-        # Make message for stop option
-        stop_option = ''
-        if   ( self.use_nl == True  ): stop_option = ' * Stop option (NL)       : ' + str( self.nl  )
-        elif ( self.use_nl == False ): stop_option = ' * Stop option (RTL)      : ' + str( self.rtl )
-
-        # Make message for the rest
-        input_filename  = ' * Input filename         : ' + self.input
-        output_filename = ' * Output filename prefix : ' + self.output
-        output_dirname  = ' * Output dirname         : ' + self.outdir
-        silent          = ' * Silent                 : ' + str( self.silent )
-
-        # Show options
-        print_log( '\nParameter set :'                                               )
-        print_log( '===============================================================' )
-        print_log(  input_filename                                                   )
-        print_log(  output_filename                                                  )
-        print_log(  output_dirname                                                   )
-        print_log(  stop_option                                                      )
-        print_log(  silent                                                           )
-        print_log( '===============================================================' )
-'''
 
 class Options:
     def __init__(
         self,
-        nl       = 3,        # Number of leaves remain, default 3
-        rtl      = 0.95,     # Threshold of RTL, default 0.95
-        res      = 1,        # Resolution of leaf pruning, default 1
-        use_nl   = False,    # Whether NL are used as stop option, default False
-        #format   = 'newick', # Input file format, default newick
-        #outfmt   = 'newick', # Output file format, default newick
+        nl     = 3,        # Number of leaves remain, default 3
+        rtl    = 0.95,     # Threshold of RTL, default 0.95
+        res    = 1,        # Resolution of leaf pruning, default 1
+        use_nl = False,    # Whether NL are used as stop option, default False
+        #format = 'newick', # Input file format, default newick
+        #outfmt = 'newick', # Output file format, default newick
     ):
         self.nl       = nl
         self.rtl      = rtl
@@ -303,7 +92,7 @@ class Time:
 
     def showElapsedTime( self ):
         self.elapsed_time = '%.3f' % round( self.elapsed_time, 3 )
-        print_log( '\nTotal elapsed time : ' + self.elapsed_time + ' sec.' )
+        print( '\nTotal elapsed time : ' + self.elapsed_time + ' sec.' )
 
 # --------------------------------------------------------------------------- #
 #                    FUNCTIONS FOR PHYLOGENETIC TREE PRUNING                  #
@@ -373,39 +162,32 @@ class Tree:
 
     # Read phylogenetic tree and get information
     def readTree( self, input_tree ):
-        print_log( '\nReading tree data ...' )
+        print( '\nReading tree data ...' )
         self.original_tree = pt.Tree.from_string( input_tree )
-        #if ( file_format == 'newick'):
-        #    with pt.Newicktreefile( input_tree ) as treefile:
-        #        self.original_tree = treefile.readtree()
-        #elif ( file_format == 'nexus' ):
-        #    with pt.Nexustreefile( input_tree ) as treefile:
-        #        self.original_tree = treefile.readtree()
-        ##print( self.original_tree )
-        print_log( '=> DONE' )
+        print( '=> DONE' )
 
     # Get list of all leaves in original tree
     def getLeavesList( self ):
-        print_log( '\nGetting leaf names ...' )
+        print( '\nGetting leaf names ...' )
         self.all_leaves_list = ( self.original_tree ).leaflist()
         #print( self.all_leaves_list )
-        print_log( '=> DONE' )
+        print( '=> DONE' )
 
     # Mid-point rooting
     def midPointRooting( self ):
-        print_log( '\nMid-point rooting ...' )
+        print( '\nMid-point rooting ...' )
         ( self.original_tree ).rootmid()
-        print_log( '=> DONE' )
+        print( '=> DONE' )
 
     # Detect root node
     def detectRootNode( self ):
-        print_log( '\nDetecting root node ...' )
+        print( '\nDetecting root node ...' )
         self.root_node = ( self.original_tree ).root
-        print_log( '=> DONE' )
+        print( '=> DONE' )
 
     # Calculate Statistics of input tree
     def calculateTreeStatistics( self ):
-        print_log( '\nCalculating basic Statistics of the input tree ...' )
+        print( '\nCalculating basic Statistics of the input tree ...' )
         # Get number of leaves
         self.num_all_leaves = len( self.all_leaves_list )
         #print( self.num_all_leaves )
@@ -423,7 +205,7 @@ class Tree:
         #print( self.height )
 
         #for leaf in self.all_leaves_list: print( leaf )
-        print_log( '=> DONE' )
+        print( '=> DONE' )
 
     # Show Statistics of input tree
     def showTreeStatistics( self ):
@@ -433,13 +215,13 @@ class Tree:
         rtl_denominator  = str( round( self.rtl_denominator, DIGIT ) )
         diameter         = str( round( self.diameter,        DIGIT ) )
         height           = str( round( self.height,          DIGIT ) )
-        print_log( '\nInput tree Statistics :' )
-        print_log( '==============================================================='   )
-        print_log( ' * Number of the leaves in the tree          : ' + num_all_leaves  )
-        print_log( ' * Total branch length of the tree           : ' + rtl_denominator )
-        print_log( ' * Diameter (the longest leaf-leaf distance) : ' + diameter        )
-        print_log( ' * Height (the longest root-to-tip distance) : ' + height          )
-        print_log( '==============================================================='   )
+        print( '\nInput tree Statistics :' )
+        print( '==============================================================='   )
+        print( ' * Number of the leaves in the tree          : ' + num_all_leaves  )
+        print( ' * Total branch length of the tree           : ' + rtl_denominator )
+        print( ' * Diameter (the longest leaf-leaf distance) : ' + diameter        )
+        print( ' * Height (the longest root-to-tip distance) : ' + height          )
+        print( '==============================================================='   )
 
 class Pruner( Tree ):
     def __init__(
@@ -481,12 +263,10 @@ class Pruner( Tree ):
     def pruneWithDefaultMode( self, use_nl ):
         # Get number of all leaves
         self.num_remain_leaves = self.num_all_leaves
-        # Report TSV, header name
-        report_tsv( 'Iteration\t#RemainLeaves\tRTL\tPrunedLeaf' )
         # Get Initial RTL
         self.current_rtl = 1.0
 
-        print_log( '\nSTART PRUNING !\n' )
+        print( '\nSTART PRUNING !\n' )
         # If stop option = NL
         if ( use_nl == True ):
             while ( self.num_remain_leaves > self.stop_at_nl ):
@@ -499,15 +279,10 @@ class Pruner( Tree ):
                 # Show number of remaining leaves
                 self.num_remain_leaves -= 1
                 current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
-                print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
-                            'RTL : '                + current_rtl_round             + '\t' + \
-                            '# of leaves remain : ' + str( self.num_remain_leaves ) + '\t' + \
-                            'Pruned leaf : '        + str( self.pruned_leaf       ) )
-                # Report TSV log
-                report_tsv( str( self.iteration_time    ) + '\t' + \
-                            str( self.num_remain_leaves ) + '\t' + \
-                            current_rtl_round             + '\t' + \
-                            self.pruned_leaf )
+                print(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
+                        'RTL : '                + current_rtl_round             + '\t' + \
+                        '# of leaves remain : ' + str( self.num_remain_leaves ) + '\t' + \
+                        'Pruned leaf : '        + str( self.pruned_leaf       ) )
                 # Inclement iteration time
                 self.iteration_time += 1
 
@@ -523,18 +298,13 @@ class Pruner( Tree ):
                     # Show number of remaining leaves
                     self.num_remain_leaves -= 1
                     current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
-                    print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
-                                'RTL : '                + current_rtl_round             + '\t' + \
-                                '# of leaves remain : ' + str( self.num_remain_leaves ) + '\t' + \
-                                'Pruned leaf : '        + str( self.pruned_leaf       ) )
-                    # Report TSV log
-                    report_tsv( str( self.iteration_time    ) + '\t' + \
-                                str( self.num_remain_leaves ) + '\t' + \
-                                current_rtl_round             + '\t' + \
-                                self.pruned_leaf )
+                    print(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
+                            'RTL : '                + current_rtl_round             + '\t' + \
+                            '# of leaves remain : ' + str( self.num_remain_leaves ) + '\t' + \
+                            'Pruned leaf : '        + str( self.pruned_leaf       ) )
                     # Stop loop if 3 leaves remain and program still try to run
                     if ( self.num_remain_leaves == 3 ):
-                        print_log( '\nNOTE : Iteration stopped since there are only 3 leaves in the tree now.' )
+                        print( '\nNOTE : Iteration stopped since there are only 3 leaves in the tree now.' )
                         break
                     # Inclement iteration time
                     self.iteration_time += 1
@@ -543,12 +313,10 @@ class Pruner( Tree ):
     def pruneWithFastMode( self, use_nl, resolution ):
         # Get number of all leaves
         self.num_remain_leaves = self.num_all_leaves
-        # Report TSV, header name
-        report_tsv( 'Iteration\t#RemainLeaves\tRTL' )
         # Get Initial RTL
         self.current_rtl = 1.0
 
-        print_log( '\nSTART PRUNING !\n' )
+        print( '\nSTART PRUNING !\n' )
         # If stop option = NL
         if ( use_nl == True ):
             while ( self.num_remain_leaves > self.stop_at_nl ):
@@ -564,12 +332,12 @@ class Pruner( Tree ):
                 # Show number of remaining leaves
                 self.num_remain_leaves -= resolution
                 current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
-                print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
-                            'RTL : '                + current_rtl_round             + '\t' + \
-                            '# of leaves remain : ' + str( self.num_remain_leaves ) )
+                print(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
+                        'RTL : '                + current_rtl_round             + '\t' + \
+                        '# of leaves remain : ' + str( self.num_remain_leaves ) )
                 # Stop loop if [# leaves remain] < [resolution] and program still try to run
                 if ( ( self.num_remain_leaves - resolution ) <= 3 ):
-                    print_log( '\nNOTE : Iteration stopped since no leaves can be pruned with the resolution.' )
+                    print( '\nNOTE : Iteration stopped since no leaves can be pruned with the resolution.' )
                     break
                 # Inclement iteration time
                 self.iteration_time += 1
@@ -589,12 +357,12 @@ class Pruner( Tree ):
                 # Show number of remaining leaves
                 self.num_remain_leaves -= resolution
                 current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
-                print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
-                            'RTL : '                + current_rtl_round             + '\t' + \
-                            '# of leaves remain : ' + str( self.num_remain_leaves ) )
+                print(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
+                        'RTL : '                + current_rtl_round             + '\t' + \
+                        '# of leaves remain : ' + str( self.num_remain_leaves ) )
                 # Stop loop if [# leaves remain] < [resolution] and program still try to run
                 if ( ( self.num_remain_leaves - resolution ) <= 3 ):
-                    print_log( '\nNOTE : Iteration stopped since no leaves can be pruned with the resolution.' )
+                    print( '\nNOTE : Iteration stopped since no leaves can be pruned with the resolution.' )
                     break
                 # Inclement iteration time
                 self.iteration_time += 1
@@ -602,116 +370,6 @@ class Pruner( Tree ):
 # --------------------------------------------------------------------------- #
 #                      CLASSES FOR OUTPUT FILES HANDING                       #
 # --------------------------------------------------------------------------- #
-
-'''
-class Output():
-    def __init__(
-        self,
-        out_prefix        = None,    # Prefix of output files
-        out_dir_name      = '',      # Output directory name
-        out_execute_log   = '',      # Execute log file name
-        out_tsv_log       = '',      # TSV data file name
-        out_remain_leaves = '',      # List of remaining leaves
-        out_pruned_leaves = '',      # List of pruned leaves
-        out_tree          = None,    # Output pruned tree
-        fout_log          = None,    # Output file for exe log
-        fout_tsv          = None,    # Output file for STV
-        fout_remain       = None,    # Output file for remaining list
-        fout_pruned       = None,    # Output file for pruned leaves list
-        fout_tree         = None,    # Output file for pruned tree
-        fout_tree_format  = 'newick' # Output file for pruned tree format, default newick
-    ):
-        self.out_prefix        = out_prefix
-        self.out_dir_name      = out_dir_name
-        self.out_execute_log   = out_execute_log
-        self.out_tsv_log       = out_tsv_log
-        self.out_remain_leaves = out_remain_leaves
-        self.out_pruned_leaves = out_pruned_leaves
-        self.out_tree          = out_tree
-        self.fout_log          = fout_log
-        self.fout_tsv          = fout_tsv
-        self.fout_remain       = fout_remain
-        self.fout_pruned       = fout_pruned
-        self.fout_tree         = fout_tree
-        self.fout_tree_format  = fout_tree_format
-
-    def setOutputFileNames( self, output, outdir, outfmt ):
-        #global OUTPUT, OUT_DIR
-        self.out_prefix   = output
-        self.out_dir_name = outdir
-
-        # Create output dir if necessary
-        if ( self.out_dir_name != '' and os.path.exists( self.out_dir_name ) == False ):
-            if ( self.out_dir_name[ -1 ] != '/' ): self.out_dir_name += '/'
-            print_log( '\nOutput directory ' + self.out_dir_name + ' was created.\n' )
-            os.mkdir( self.out_dir_name )
-        elif ( self.out_dir_name != '' and os.path.exists( self.out_dir_name ) == True ):
-            if ( self.out_dir_name[ -1 ] != '/' ): self.out_dir_name += '/'
-
-        # Record output file format and extension
-        self.fout_tree_format = outfmt
-        extension             = outfmt
-
-        # Set output files name
-        self.out_execute_log   = self.out_dir_name + self.out_prefix + '.log'
-        self.out_tsv_log       = self.out_dir_name + self.out_prefix + '.tsv'
-        self.out_remain_leaves = self.out_dir_name + self.out_prefix + '_remaining_leaves.txt'
-        self.out_pruned_leaves = self.out_dir_name + self.out_prefix + '_pruned_leaves.txt'
-        self.out_pruned_tree   = self.out_dir_name + self.out_prefix + '_tree.' + extension
-
-    # Save execution log
-    def saveExeLog( self ):
-        global EXE_LOG
-        self.fout_log = open( self.out_execute_log, 'w' )
-        ( self.fout_log ).write( EXE_LOG )
-
-    # Save TSV file
-    def saveTsv( self ):
-        global TSV_LOG
-        self.fout_tsv = open( self.out_tsv_log, 'w' )
-        ( self.fout_tsv ).write( TSV_LOG )
-        print_log( '\n' + self.out_tsv_log + ' was saved.' )
-
-    # Save remaining leaves list
-    def saveRemainLeavesList( self, remain_leaves ):
-        self.fout_remain = open( self.out_remain_leaves, 'w' )
-        for leaf in remain_leaves: ( self.fout_remain ).write( leaf + '\n' )
-        print_log( self.out_remain_leaves + ' was saved.' )
-
-    # Save pruned leaves list
-    def savePrunedLeavesList( self, pruned_leaves ):
-        self.fout_pruned = open( self.out_pruned_leaves, 'w' )
-        for leaf in pruned_leaves: ( self.fout_pruned ).write( leaf + '\n' )
-        print_log( self.out_pruned_leaves + ' was saved.' )
-
-    # Save output tree
-    def saveTree( self, pruned_tree ):
-        if ( self.fout_tree_format == 'newick' ):
-            with open( self.out_pruned_tree, 'w' ) as outfile:
-                outfile.write( pruned_tree.newick() )
-        elif ( self.fout_tree_format == 'nexus' ):
-            with open( self.out_pruned_tree, 'w' ) as outfile:
-                outfile.write( pruned_tree.nexus() )
-        print_log( self.out_pruned_tree + ' was saved.' )
-
-    # Close output files
-    def closeFiles( self ):
-        ( self.fout_log    ).close()
-        ( self.fout_tsv    ).close()
-        ( self.fout_remain ).close()
-        ( self.fout_pruned ).close()
-
-    # Show output file names
-    def showOutputFileNames( self ):
-        print_log( '\nOutput file name :' )
-        print_log( '===============================================================' )
-        print_log( ' * Execution log            : ' + self.out_execute_log           )
-        print_log( ' * Output TSV               : ' + self.out_tsv_log               )
-        print_log( ' * List of remaining leaves : ' + self.out_remain_leaves         )
-        print_log( ' * List of pruned leaves    : ' + self.out_pruned_leaves         )
-        print_log( ' * Pruned tree              : ' + self.out_pruned_tree           )
-        print_log( '===============================================================' )
-'''
 
 class Output():
     def __init__(
@@ -734,6 +392,10 @@ class Output():
     def PrunedTreeToString( self, pruned_tree ):
         return( pruned_tree.newick() )
 
+# --------------------------------------------------------------------------- #
+#                                CORE FUNCTION                                #
+# --------------------------------------------------------------------------- #
+
 def run_pruner(
     input_tree,
     stop_option,
@@ -753,12 +415,6 @@ def run_pruner(
     )
     #options.checkOptions()
     options.showOptions()
-
-    '''
-    # Set output files info
-    output = Output()
-    output.setOutputFileNames( options.output, options.outdir, options.outfmt )
-    '''
 
     # Get phylogenetic tree
     tree = Pruner()
@@ -781,21 +437,7 @@ def run_pruner(
     out_pruned_tree_str   = output.PrunedTreeToString( tree.pruned_tree   )
     #print( out_pruned_tree_str )
 
-    '''
-    # Save output files
-    output.saveTsv()
-    output.saveRemainLeavesList( tree.remain_leaves )
-    output.savePrunedLeavesList( tree.pruned_leaves )
-    output.saveTree( tree.pruned_tree )
-
-    output.showOutputFileNames()
-
-    finish_program()
-
-    output.saveExeLog()
-    output.closeFiles()
-    '''
-
+    # Finish program log
     finish_program()
 
     # Elapsed time : END
@@ -804,8 +446,3 @@ def run_pruner(
     time.showElapsedTime()
 
     return( out_remain_leaves_str, out_pruned_tree_str )
-
-'''
-if __name__ == '__main__':
-    main()
-'''

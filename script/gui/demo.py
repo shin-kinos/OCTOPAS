@@ -11,10 +11,9 @@ from PyQt6.QtWidgets import (
     QGridLayout,
     QCheckBox,
     QComboBox,
-    QMessageBox
+    QMessageBox,
 )
 from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtGui  import QIcon
 from pathlib      import Path
 
 import stylesheet_for_qt as st
@@ -27,6 +26,8 @@ WINDOW_WIDTH      = 900
 WINDOW_HEIGHT     = 700
 FIN_BUTTON_WIDTH  = 200
 FIN_BUTTON_HEIGHT = 30
+CLR_BUTTON_WIDTH  = 120
+CLR_BUTTON_HEIGHT = 25
 OPT_BUTTON_WIDTH  = 230
 OPT_BUTTON_HEIGHT = 30
 RUN_BUTTON_WIDTH  = 180
@@ -113,6 +114,14 @@ class textResult( QLabel ):
         super().__init__()
         self.setText( 'test' )
 
+# Class for help info tooltip
+class setHelpToolTip( QLabel ):
+    def __init__( self, content ):
+        super().__init__()
+        self.setText( '?' )
+        self.setToolTip( content )
+        self.setStyleSheet( st.help_tooltip )
+
 # Class for download dialog
 class showDownloadDialog( QMessageBox ):
     def __init__( self, file_name ):
@@ -148,6 +157,8 @@ class mainApp( QWidget ):
             WINDOW_HEIGHT,     \
             FIN_BUTTON_WIDTH,  \
             FIN_BUTTON_HEIGHT, \
+            CLR_BUTTON_WIDTH,  \
+            CLR_BUTTON_HEIGHT, \
             RUN_BUTTON_WIDTH,  \
             RUN_BUTTON_HEIGHT, \
             DL_BUTTON_WIDTH,   \
@@ -180,14 +191,21 @@ class mainApp( QWidget ):
         #button_fin.setIcon( QIcon( './icon/upload.icon' ) )
         button_fin.setIconSize( QSize( 24, 24 ) )
         button_fin.setFixedSize( QSize( FIN_BUTTON_WIDTH, FIN_BUTTON_HEIGHT ) )
-        button_fin.setToolTip( 'This is a tooltip for the QPushButton widget' )
+        #button_fin.setToolTip( 'This is a tooltip for the QPushButton widget' )
+        help_input = setHelpToolTip( utils.help_input )
 
         # Checkbox of using example data set
         self.example_cbox = QCheckBox( ' Use example data?', clicked = self.getExampleTree )
         self.example_cbox.setStyleSheet( st.example_cbox )
+        help_example = setHelpToolTip( utils.help_example )
 
         # Set input text field 
         self.input_content = inputContentLabel()
+
+        # Set input clear button
+        self.button_clear = QPushButton( '&Clear input tree', clicked = self.clearInputInfo )
+        self.button_clear.setStyleSheet( st.button_clear )
+        self.button_clear.setFixedSize( QSize( CLR_BUTTON_WIDTH, CLR_BUTTON_HEIGHT ) )
 
         # Set option title
         option_title = optionTitle()
@@ -198,6 +216,7 @@ class mainApp( QWidget ):
 
         # Set combobox for stop option
         self.option_stop_opt = comboboxForStopOption()
+        help_stopoption      = setHelpToolTip( utils.help_stopoption )
 
         # Set stop option threshold label
         option_thresh_msg = optionMessageLabel()
@@ -206,6 +225,7 @@ class mainApp( QWidget ):
         # Set stop option threshold 
         self.option_thresh = textBoxForOptions()
         self.option_thresh.setText( '0.95' )
+        help_threshold = setHelpToolTip( utils.help_threshold )
 
         # Set resolution label
         option_resol_msg = optionMessageLabel()
@@ -214,6 +234,7 @@ class mainApp( QWidget ):
         # Set resolution option threshold 
         self.option_resol = textBoxForOptions()
         self.option_resol.setText( '1' )
+        help_resolution = setHelpToolTip( utils.help_resolution )
 
         # Set RUN button
         self.button_run = QPushButton( '&RUN', clicked = self.runProgram )
@@ -244,21 +265,27 @@ class mainApp( QWidget ):
 
         layout.addWidget( title,                  0, 0, 1, 1 )
         layout.addWidget( source,                 1, 0, 1, 1 )
-        layout.addWidget( button_fin,             2, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft )
-        layout.addWidget( self.example_cbox,      3, 0, 1, 1 )
+        layout.addWidget( button_fin,             2, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
+        layout.addWidget( help_input,             2, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignRight  )
+        layout.addWidget( self.example_cbox,      3, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
+        layout.addWidget( help_example,           3, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignRight  )
         layout.addWidget( self.input_content,     4, 0, 1, 1 )
-        layout.addWidget( option_title,           5, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
-        layout.addWidget( option_stop_msg,        6, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
-        layout.addWidget( self.option_stop_opt,   6, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
-        layout.addWidget( option_thresh_msg,      7, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
-        layout.addWidget( self.option_thresh,     7, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
-        layout.addWidget( option_resol_msg,       8, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
-        layout.addWidget( self.option_resol,      8, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
-        layout.addWidget( self.button_run,        9, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
-        layout.addWidget( QLabel( '' ),          10, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
-        layout.addWidget( result_title,          11, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
-        layout.addWidget( self.button_dl_leaves, 12, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
-        layout.addWidget( self.button_dl_tree,   13, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
+        layout.addWidget( self.button_clear,      5, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
+        layout.addWidget( option_title,           6, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
+        layout.addWidget( option_stop_msg,        7, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
+        layout.addWidget( help_stopoption,        7, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignRight  )
+        layout.addWidget( self.option_stop_opt,   7, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
+        layout.addWidget( option_thresh_msg,      8, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
+        layout.addWidget( self.option_thresh,     8, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
+        layout.addWidget( help_threshold,         8, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignRight  )
+        layout.addWidget( option_resol_msg,       9, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
+        layout.addWidget( self.option_resol,      9, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
+        layout.addWidget( help_resolution,        9, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignRight  )
+        layout.addWidget( self.button_run,       10, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
+        layout.addWidget( QLabel( '' ),          11, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignCenter )
+        layout.addWidget( result_title,          12, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
+        layout.addWidget( self.button_dl_leaves, 13, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
+        layout.addWidget( self.button_dl_tree,   14, 0, 1, 1, alignment = Qt.AlignmentFlag.AlignLeft   )
 
     def openInputFile( self ):
         file_name, _ = QFileDialog.getOpenFileName( self )
@@ -266,7 +293,7 @@ class mainApp( QWidget ):
             file_path = Path( file_name )
             # Read file and save content
             file_content = utils.read_newick( file_path )
-            # Clear input textbox 
+            # Clear input textbox
             ( self.input_content ).clear()
             # Set new tree data
             ( self.input_content ).setText( file_content )
@@ -301,6 +328,20 @@ class mainApp( QWidget ):
         if ( self.button_dl_leaves.isEnabled() == False ): self.button_dl_leaves.setStyleSheet( st.button_download_disable )
         if ( self.button_dl_tree.isEnabled()   == False ): self.button_dl_tree.setStyleSheet(   st.button_download_disable )
 
+    def clearInputInfo( self ):
+        # Change checkbox state 'unchecked'
+        if ( ( self.example_cbox ).isChecked() == True ): ( self.example_cbox ).setChecked( False )
+        # Clear input textbox
+        ( self.input_content ).clear()
+        # Disable run button
+        self.button_run.setEnabled( False )
+        if ( self.button_run.isEnabled() == False ): self.button_run.setStyleSheet( st.button_run_disable )
+        # Disable download buttons
+        self.button_dl_leaves.setEnabled( False )
+        self.button_dl_tree.setEnabled(   False )
+        if ( self.button_dl_leaves.isEnabled() == False ): self.button_dl_leaves.setStyleSheet( st.button_download_disable )
+        if ( self.button_dl_tree.isEnabled()   == False ): self.button_dl_tree.setStyleSheet(   st.button_download_disable )
+
     def runProgram( self ):
         # Check parameters
         check, which = utils.check_options(
@@ -309,7 +350,7 @@ class mainApp( QWidget ):
             ( self.option_resol    ).text()
         )
         if   ( check == 'error' ): showOptionError( which )
-        elif ( check == 'ok' ): # If 'check' == ok, run program
+        elif ( check == 'ok'    ): # If 'check' == ok, run program
             # Disable run button immediately not to be pushed again
             self.button_run.setEnabled( False )
             if ( self.button_run.isEnabled() == False ): self.button_run.setStyleSheet( st.button_run_disable )
@@ -328,29 +369,33 @@ class mainApp( QWidget ):
             if ( self.button_dl_leaves.isEnabled() == True ): self.button_dl_leaves.setStyleSheet( st.button_download_able )
             if ( self.button_dl_tree.isEnabled()   == True ): self.button_dl_tree.setStyleSheet(   st.button_download_able )
 
+    # Download remaining leaves list
     def downloadLeavesList( self ):
         file_path = ''
         content   = self.output_leaves
         dir_name  = QFileDialog.getExistingDirectory( self )
         if dir_name:
-            file_path = dir_name + '/result_leaves.txt'
+            file_name = utils.out_leaves_file_name( dir_name )
+            file_path = dir_name + '/' + file_name
             file_path = Path( file_path )
             fout      = open( file_path, 'w' )
             fout.write( content )
             fout.close()
-            showDownloadDialog( 'result_leaves.txt' )
+            showDownloadDialog( file_name )
 
+    # Download pruned tree
     def downloadPrunedTree( self ):
         file_path = ''
         content   = self.output_tree
         dir_name  = QFileDialog.getExistingDirectory( self )
         if dir_name:
-            file_path = dir_name + '/result_tree.newick'
+            file_name = utils.out_tree_file_name( dir_name )
+            file_path = dir_name + '/' + file_name
             file_path = Path( file_path )
             fout      = open( file_path, 'w' )
             fout.write( content )
             fout.close()
-            showDownloadDialog( 'result_tree.newick' )
+            showDownloadDialog( file_name )
 
 app = QApplication( sys.argv )
 
