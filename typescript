@@ -1,602 +1,0 @@
-Script started on Mon Jun 12 14:01:10 2023
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject[39m[49m]
->> % [K[?2004hlls[?2004l
-LICENSE     README.md   [1m[36mpython_venv[39;49m[0m [1m[36mscript[39;49m[0m      [1m[36mtest_data[39;49m[0m   typescript
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject[39m[49m]
->> % [K[?2004hccd c  ccd script[1m/[0m[0m [?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36mevaluation[39;49m[0m          [1m[36mmafft[39;49m[0m               [1m[36mout_prototype[39;49m[0m       [1m[36moutdir[39;49m[0m
-[1m[36mgui[39;49m[0m                 [1m[36mout_enolase[39;49m[0m         [1m[36mout_tomato[39;49m[0m          script_prototype.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hccdc  ccd gui[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36m__pycache__[39;49m[0m          demo.py              demo_copy.py         download.txt         stylesheet_for_qt.py
-[1m[36mbuild[39;49m[0m                demo.spec            [1m[36mdist[39;49m[0m                 [1m[36micon[39;49m[0m                 utils.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hccdc  ppython3 demo.py[?2004l
-Traceback (most recent call last):
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui/demo.py", line 3, in <module>
-    from PyQt6.QtWidgets import (
-ModuleNotFoundError: No module named 'PyQt6'
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[15D               [15Dccd .//   c  ccd ../[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hlldl ls[?2004l
-[1m[36mevaluation[39;49m[0m          [1m[36mmafft[39;49m[0m               [1m[36mout_prototype[39;49m[0m       [1m[36moutdir[39;49m[0m
-[1m[36mgui[39;49m[0m                 [1m[36mout_enolase[39;49m[0m         [1m[36mout_tomato[39;49m[0m          script_prototype.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hccd ../[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject[39m[49m]
->> % [K[?2004hlls[?2004l
-LICENSE     README.md   [1m[36mpython_venv[39;49m[0m [1m[36mscript[39;49m[0m      [1m[36mtest_data[39;49m[0m   typescript
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject[39m[49m]
->> % [K[?2004hccd ../[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36mThesisProject[39;49m[0m
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git[39m[49m]
->> % [K[?2004hccd ThesisProject[1m/[0m[0m [?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject[39m[49m]
->> % [K[?2004hlls[?2004l
-LICENSE     README.md   [1m[36mpython_venv[39;49m[0m [1m[36mscript[39;49m[0m      [1m[36mtest_data[39;49m[0m   typescript
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject[0m[27m[24m[J[[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject[39m[49m]
->> % [K[?2004hssource python_venv[1m/[0m[0m/bin[1m/[0m[0m/activate[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject[39m[49m]
->> % [K[?2004hccd ./   ../[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git[39m[49m]
->> % [K[?2004hcccd c  ccd c  lla[?2004l
-zsh: command not found: la
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36mThesisProject[39;49m[0m
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git[39m[49m]
->> % [K[?2004hccd ThesisProject[1m/[0m[0m [?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject[39m[49m]
->> % [K[?2004hlls[?2004l
-LICENSE     README.md   [1m[36mpython_venv[39;49m[0m [1m[36mscript[39;49m[0m      [1m[36mtest_data[39;49m[0m   typescript
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject[39m[49m]
->> % [K[?2004hccd script[1m/[0m[0m [?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36mevaluation[39;49m[0m          [1m[36mmafft[39;49m[0m               [1m[36mout_prototype[39;49m[0m       [1m[36moutdir[39;49m[0m
-[1m[36mgui[39;49m[0m                 [1m[36mout_enolase[39;49m[0m         [1m[36mout_tomato[39;49m[0m          script_prototype.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hccdc  ccd gui[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36m__pycache__[39;49m[0m          demo.py              demo_copy.py         download.txt         stylesheet_for_qt.py
-[1m[36mbuild[39;49m[0m                demo.spec            [1m[36mdist[39;49m[0m                 [1m[36micon[39;49m[0m                 utils.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hppython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-error
-Threshold of RTL must be real number.
-Relative tree length
-1
-1
-ok
-
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-ok
-
-Relative tree length
-1
-1
-ok
-
-# of leaves remain
-1.2
-1
-error
-Threshold of leaves # must be integer number.
-Relative tree length
-a
-1
-error
-Threshold of RTL must be real number.
-Relative tree length
--1.0
-1
-error
-Threshold of RTL must be real number.
-Relative tree length
-2.5
-1
-ok
-
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-2.5
-1
-sss
-error
-Threshold of RTL must be at range of [0, 1].
-Relative tree length
-1.5
-1
-sss
-error
-Threshold of RTL must be at range of [0, 1].
-Relative tree length
-2.5
-1
-sss
-error
-Threshold of RTL must be at range of [0, 1].
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-# of leaves remain
-0.95
-1
-error
-Threshold of leaves # must be integer number.
-# of leaves remain
-2
-1
-error
-Threshold of leaves # must be 3 or more.
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1.2
-error
-Resolution must be integer number.
-Relative tree length
-0.95
-2
-error
-Resolution must be 3 or more.
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-1.2
-1
-Relative tree length
-q
-1
-# of leaves remain
-q
-1
-# of leaves remain
-q
-1
-Relative tree length
-q
-1
-Relative tree length
--1.2
-1
-# of leaves remain
--1.2
-1
-# of leaves remain
-1
-1
-# of leaves remain
-3
-1
-# of leaves remain
-3
-1
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[15Dls             [13Dpython3 demo.py[?2004l
-# of leaves remain
-1
-1
-# of leaves remain
-2
-1
-# of leaves remain
-2
-1
-# of leaves remain
-3
-1
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-# of leaves remain
-0.95
-1
-# of leaves remain
-1
-1
-# of leaves remain
-2
-1
-# of leaves remain
-3
-1
-# of leaves remain
-3
-0
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-# of leaves remain
-0.95
-1
-# of leaves remain
-1
-1
-# of leaves remain
-3
-1
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-# of leaves remain
-0.95
-1
-# of leaves remain
-4
-0
-# of leaves remain
-4
-1.3
-# of leaves remain
-4
-a
-# of leaves remain
-3
-2
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36m__pycache__[39;49m[0m          demo.py              demo_copy.py         download.txt         stylesheet_for_qt.py
-[1m[36mbuild[39;49m[0m                demo.spec            [1m[36mdist[39;49m[0m                 [1m[36micon[39;49m[0m                 utils.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hsssh -X hpcgate` @cranfiedl         cranfiedl  ld.ac.uk[?2004l
-ssh: Could not resolve hostname cranfield.ac.uk: nodename nor servname provided, or not known
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hssh -X hpcgate@cranfield.ac.uk[P[15C [16D.cranfield.ac.uk[15Dshpcgate.cranfield.ac.uk[23D3hpcgate.cranfield.ac.uk[23D8hpcgate.cranfield.ac.uk[23D3hpcgate.cranfield.ac.uk[23D5hpcgate.cranfield.ac.uk[23D8hpcgate.cranfield.ac.uk[23D4hpcgate.cranfield.ac.uk[23D`hpcgate.cranfield.ac.uk[23D[P[23C [24D@hpcgate.cranfield.ac.uk[23D[?2004l
-+-----------------------------------------------------------------+
-| This system is for the use of authorized users only.            |
-| Individuals using this computer system without authority, or in |
-| excess of their authority, are subject to having all of their   |
-| activities on this system monitored and recorded by system      |
-| personnel.                                                      |
-|                                                                 |
-| In the course of monitoring individuals improperly using this   |
-| system, or in the course of system maintenance, the activities  |
-| of authorized users may also be monitored.                      |
-|                                                                 |
-| Anyone using this system expressly consents to such monitoring  |
-| and is advised that if such monitoring reveals possible         |
-| evidence of criminal activity, system personnel may provide the |
-| evidence of such monitoring to law enforcement officials.       |
-+------------------------------------------------------------------
-
-+-----------------------------------------------------------------+
-|            Welcome to the Cranfield HPC SSH GATEWAY             |
-+-----------------------------------------------------------------+
-
-s383584@hpcgate.cranfield.ac.uk's password: 
-Last login: Sat Jun 10 17:55:03 2023 from rn-dynamic-207-118.wless.cranfield.ac.uk
-]0;s383584@hpcgate-1:~[?1034h[s383584@hpcgate-1 ~]$ exitcrescent
-********* Start key maintenance **********
-/home/CCNT/s383584/.ssh/known_hosts updated.
-Original contents retained as /home/CCNT/s383584/.ssh/known_hosts.old
-********* End key maintenance **********
-
-Warning: Permanently added 'crescent.central.cranfield.ac.uk' (ECDSA) to the list of known hosts.
-
-
-+-----------------------------------------------------------------+
-| This system is for the use of authorised users only.            |
-| Individuals using this computer system without authority, or in |
-| excess of their authority, are subject to having all of their   |
-| activities on this system monitored and recorded by system      |
-| personnel.                                                      |
-|                                                                 |
-| In the course of monitoring individuals improperly using this   |
-| system, or in the course of system maintenance, the activities  |
-| of authorised users may also be monitored.                      |
-|                                                                 |
-| Anyone using this system expressly consents to such monitoring  |
-| and is advised that if such monitoring reveals possible         |
-| evidence of criminal activity, system personnel may provide the |
-| evidence of such monitoring to law enforcement officials.       |
-+-----------------------------------------------------------------+
-                                                     __      
-                                                    /\ \__   
-       ___   _ __    __    ____    ___     __    ___\ \ ,_\  
-      /'___\/\`'__\/'__`\ /',__\  /'___\ /'__`\/' _ `\ \ \/  
-     /\ \__/\ \ \//\  __//\__, `\/\ \__//\  __//\ \/\ \ \ \_ 
-     \ \____\\ \_\\ \____\/\____/\ \____\ \____\ \_\ \_\ \__\
-      \/____/ \/_/ \/____/\/___/  \/____/\/____/\/_/\/_/\/__/
-                                                        
-                                                                                                          
-	     YOU ARE NOW LOGGED INTO crescent-login1
-
-s383584@crescent.central.cranfield.ac.uk's password: 
-Permission denied, please try again.
-s383584@crescent.central.cranfield.ac.uk's password: 
-Last failed login: Mon Jun 12 18:08:52 BST 2023 from hpcgate-1.dmz.cranfield.ac.uk on ssh:notty
-There was 1 failed login attempt since the last successful login.
-Last login: Sat Jun 10 00:03:40 2023 from hpcgate-1.dmz.cranfield.ac.uk
-*********************************************************************
-************** Your current disk usage is given below ***************
-      user/group     ||           size          ||    chunk files    
-     name     |  id  ||    used    |    hard    ||  used   |  hard   
---------------|------||------------|------------||---------|---------
-       s383584|712116||   66.54 GiB|  300.00 GiB||    63135|   600000
-*********************************************************************
-
-This cluster contains Intel(R) Xeon(R) Cluster Nodes
-]0;s383584@crescent-login1:~[?1034h[s383584@crescent-login1 ~]$ qstat
-Job id            Name             User              Time Use S Queue
-----------------  ---------------- ----------------  -------- - -----
-246406.crescentpb ADCL_ORIGINAL_T  s383584           90:36:24 R five_day        
-246527.crescentpb RUN_ADCL_DNA_10  s383584           64:31:15 R five_day        
-246529.crescentpb URANS_500_2200   s356378           863:41:2 R five_day        
-246530.crescentpb URANS_500_3300   s356378                  0 Q five_day        
-246564.crescentpb SA_15            s395970           768:59:3 R five_day        
-246641.crescentpb test             s395821           448:55:3 R five_day        
-246642.crescentpb bulldog          s386831           441:26:4 R five_day        
-246720.crescentpb star_mesh        s392534           00:02:13 R one_day         
-246721.crescentpb SKY_Cruise       s404151           148:14:5 R one_day         
-246728.crescentpb case_4           s324377           106:54:4 R one_day         
-246729.crescentpb case_4_no_temp   s324377                  0 Q one_day         
-246745.crescentpb sinus_case       s392752           46:36:58 R one_day         
-246749.crescentpb hom15_9          s395586           36:44:46 R half_day        
-246754.crescentpb mss_1            s392752           09:56:29 R one_day         
-246767.crescentpb steady_spalart1  s394245           73:22:51 R five_day        
-246773.crescentpb hom15_7          s395586           15:03:44 R half_day        
-246784.crescentpb VNCJob           s352616           00:00:33 R vis             
-246793.crescentpb sinus_case       s392752           13:27:29 R one_day         
-246800.crescentpb BL5_Diff2        s402250           06:42:46 R half_day        
-246809.crescentpb BL1_Diff5        s402250           02:12:41 R half_day        
-246810.crescentpb hc_008           s384212           00:00:31 R six_hour        
-246812.crescentpb hc_010           s384212                  0 Q six_hour        
-246813.crescentpb transcritical    s382317           00:00:07 R six_hour        
-]0;s383584@crescent-login1:~[s383584@crescent-login1 ~]$ exit
-logout
-Connection to crescent.central.cranfield.ac.uk closed.
-]0;s383584@hpcgate-1:~[s383584@hpcgate-1 ~]$ eix[K[K[Kexit
-ログアウト
-Connection to hpcgate.cranfield.ac.uk closed.
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36m__pycache__[39;49m[0m          demo.py              demo_copy.py         download.txt         stylesheet_for_qt.py
-[1m[36mbuild[39;49m[0m                demo.spec            [1m[36mdist[39;49m[0m                 [1m[36micon[39;49m[0m                 utils.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hccd ../[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36mevaluation[39;49m[0m          [1m[36mmafft[39;49m[0m               [1m[36mout_prototype[39;49m[0m       [1m[36moutdir[39;49m[0m
-[1m[36mgui[39;49m[0m                 [1m[36mout_enolase[39;49m[0m         [1m[36mout_tomato[39;49m[0m          script_prototype.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hccdc  ccp scri@     script_prototype.py[1m [0m[0m ./gui[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36mevaluation[39;49m[0m          [1m[36mmafft[39;49m[0m               [1m[36mout_prototype[39;49m[0m       [1m[36moutdir[39;49m[0m
-[1m[36mgui[39;49m[0m                 [1m[36mout_enolase[39;49m[0m         [1m[36mout_tomato[39;49m[0m          script_prototype.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script[39m[49m]
->> % [K[?2004hccd gui[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36m__pycache__[39;49m[0m          demo.spec            download.txt         stylesheet_for_qt.py
-[1m[36mbuild[39;49m[0m                demo_copy.py         [1m[36micon[39;49m[0m                 utils.py
-demo.py              [1m[36mdist[39;49m[0m                 script_prototype.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hmmv script_prototype.py[1m [0m[0m core_calc.py[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hccode   c  mmv m  mmv core_calc.py[1m [0m[0m pruner.py[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36m__pycache__[39;49m[0m          demo.spec            download.txt         stylesheet_for_qt.py
-[1m[36mbuild[39;49m[0m                demo_copy.py         [1m[36micon[39;49m[0m                 utils.py
-demo.py              [1m[36mdist[39;49m[0m                 pruner.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hppython3 demo
-[Jdemo.py       demo.spec     demo_copy.py[A[0m[27m[24m[39m[49m[5Cpython3 demo[K[39m[49m.py[1m [0m[0m [?2004l
-[JRelative tree length
-0.95
-1
-Relative tree length
-3
-1
-Relative tree length
-3
-1
-Relative tree length
-2
-1
-Relative tree length
-1
-1
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hlls[?2004l
-[1m[36m__pycache__[39;49m[0m          demo.spec            download.txt         stylesheet_for_qt.py
-[1m[36mbuild[39;49m[0m                demo_copy.py         [1m[36micon[39;49m[0m                 utils.py
-demo.py              [1m[36mdist[39;49m[0m                 pruner.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hccode pruner[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hccode pruner.py[1m [0m[0m [?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hcode pruner.py   [11Dls         [9Dpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-
-Reading tree data ...
-Traceback (most recent call last):
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui/demo.py", line 282, in runProgram
-    self.output_leaves, self.output_tree = pruner.run_pruner(
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui/pruner.py", line 691, in run_pruner
-    tree.readTree( input_tree, 'newick' ) # options.input, options.format
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui/pruner.py", line 332, in readTree
-    with pt.Newicktreefile( input_tree ) as treefile:
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project/python_venv/lib/python3.9/site-packages/phylotreelib.py", line 3769, in __init__
-    TreefileBase.__init__(self, filename, filecontent)
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project/python_venv/lib/python3.9/site-packages/phylotreelib.py", line 3670, in __init__
-    self.treefile = open(filename, mode="rt", encoding="UTF-8")
-FileNotFoundError: [Errno 2] No such file or directory: '\n'
-zsh: abort      python3 demo.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-
-Reading tree data ...
-Traceback (most recent call last):
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui/demo.py", line 282, in runProgram
-    self.output_leaves, self.output_tree = pruner.run_pruner(
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui/pruner.py", line 691, in run_pruner
-    tree.readTree( input_tree, 'newick' ) # options.input, options.format
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui/pruner.py", line 332, in readTree
-    with pt.Newicktreefile( input_tree ) as treefile:
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project/python_venv/lib/python3.9/site-packages/phylotreelib.py", line 3769, in __init__
-    TreefileBase.__init__(self, filename, filecontent)
-  File "/Users/shintarokinoshita/Desktop/Thesis_Project/python_venv/lib/python3.9/site-packages/phylotreelib.py", line 3670, in __init__
-    self.treefile = open(filename, mode="rt", encoding="UTF-8")
-FileNotFoundError: [Errno 2] No such file or directory: '(((((D64449:1.24179,E64454:1.11493)0.281:0.08837,1ATIA:1.41819)0.021:0.04429,1ADJA:1.28551)0.754:0.12582,1SESA:1.62698)0.978:0.128955,((1ASZB:1.1696,S56383:1.20003)0.965:0.31801,1PYSA:1.47425)0.978:0.237895);'
-zsh: abort      python3 demo.py
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-
-Getting leaf names ...
-=> DONE
-
-Mid-point rooting ...
-=> DONE
-
-Detecting root node ...
-=> DONE
-
-Calculating basic Statistics of the input tree ...
-=> DONE
-
-Input tree Statistics :
-===============================================================
- * Number of the leaves in the tree          : 14
- * Total branch length of the tree           : 15.56746
- * Diameter (the longest leaf-leaf distance) : 3.51187
- * Height (the longest root-to-tip distance) : 1.755935
-===============================================================
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-Hello
-
-Reading tree data ...
-=> DONE
-
-Getting leaf names ...
-=> DONE
-
-Mid-point rooting ...
-=> DONE
-
-Detecting root node ...
-=> DONE
-
-Calculating basic Statistics of the input tree ...
-=> DONE
-
-Input tree Statistics :
-===============================================================
- * Number of the leaves in the tree          : 3711
- * Total branch length of the tree           : 300.55183
- * Diameter (the longest leaf-leaf distance) : 3.32947
- * Height (the longest root-to-tip distance) : 1.664735
-===============================================================
-
-Total elapsed time : 0.140 sec.
-
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004h[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-Hello
-
-Reading tree data ...
-=> DONE
-
-Getting leaf names ...
-=> DONE
-
-Mid-point rooting ...
-=> DONE
-
-Detecting root node ...
-=> DONE
-
-Calculating basic Statistics of the input tree ...
-=> DONE
-
-Input tree Statistics :
-===============================================================
- * Number of the leaves in the tree          : 361
- * Total branch length of the tree           : 15.524275
- * Diameter (the longest leaf-leaf distance) : 0.822199
- * Height (the longest root-to-tip distance) : 0.4111
-===============================================================
-
-Total elapsed time : 0.028 sec.
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004hpython3 demo.py[?2004l
-Relative tree length
-0.95
-1
-Hello
-
-Reading tree data ...
-=> DONE
-
-Getting leaf names ...
-=> DONE
-
-Mid-point rooting ...
-=> DONE
-
-Detecting root node ...
-=> DONE
-
-Calculating basic Statistics of the input tree ...
-=> DONE
-
-Input tree Statistics :
-===============================================================
- * Number of the leaves in the tree          : 500
- * Total branch length of the tree           : 43.47894
- * Diameter (the longest leaf-leaf distance) : 2.39503
- * Height (the longest root-to-tip distance) : 1.197515
-===============================================================
-
-Total elapsed time : 0.034 sec.
-[1m[7m%[27m[1m[0m                                                                                                                        ]7;file://rn-dynamic-207-027.wless.cranfield.ac.uk/Users/shintarokinoshita/Desktop/Thesis_Project_Git/ThesisProject/script/gui[0m[27m[24m[J(python_venv) [[42mshintarokinoshita[49m@[46mrn-dynamic-207-027[49m:[45m~/Desktop/Thesis_Project_Git/ThesisProject/script/gui[39m[49m]
->> % [K[?2004h
