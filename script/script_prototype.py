@@ -1,11 +1,29 @@
 
+'''
+    <one line to give the program's name and a brief idea of what it does.>
+    Copyright (C) 2023  Shintaro Kinoshita
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+'''
+
 import os                 # For file operation
 import sys                # For command-line args
 import time               # For elapse time reporting
 from   enum import Enum   # For Enum error handling
 import phylotreelib as pt # Package for tree handling
 
-VERSION = '0.1.3'      # Current version of program
+VERSION = '0.2.1'      # Current version of program
 ARG_S   = False        # Global variable of argument '--silent', True or False, default False
 EXE_LOG = ''           # Global variable of execution log
 TSV_LOG = ''           # Global variable of output TSV file
@@ -279,6 +297,7 @@ def detect_pruned_leaf( tree, leaves, root ):
 
     return target_leaf
 
+# Detect pruned leaves at resolution = n
 def detect_pruned_leaves( tree, leaves, root, resolution ):
     # get leaves branch length
     leaves_bl = list()
@@ -401,10 +420,10 @@ class Pruner( Tree ):
         pruned_leaves     = list(), # Pruned leaves list
         remain_leaves     = list(), # Remaining leaves list
         stop_at_nl        = 3,      # Stop option of remaining leaves number, default 3
-        stop_at_rtl       = 0.95,   # Stop option of RTL criterion, default 0.95
+        stop_at_rtl       = 0.95,   # Stop option of RTL threshold, default 0.95
         current_rtl       = None,   # Current RTL in each iteration
         pruned_leaf       = None,   # Pruned one leaf in each iteration
-        pruned_leaf_list  = list(), # Pruned [resolution] leavs in each iteration
+        pruned_leaf_list  = list(), # Pruned [resolution] leaves in each iteration
         num_remain_leaves = None,   # Number of remaining leaves
         iteration_time    = 1       # Iteration time of pruning process
     ):
@@ -436,7 +455,7 @@ class Pruner( Tree ):
         self.num_remain_leaves = self.num_all_leaves
         # Report TSV, header name
         report_tsv( 'Iteration\t#RemainLeaves\tRTL\tPrunedLeaf' )
-        # Get Initial RTL
+        # Get initial RTL
         self.current_rtl = 1.0
 
         print_log( '\nSTART PRUNING !\n' )
@@ -498,7 +517,7 @@ class Pruner( Tree ):
         self.num_remain_leaves = self.num_all_leaves
         # Report TSV, header name
         report_tsv( 'Iteration\t#RemainLeaves\tRTL' )
-        # Get Initial RTL
+        # Get initial RTL
         self.current_rtl = 1.0
 
         print_log( '\nSTART PRUNING !\n' )
@@ -592,7 +611,7 @@ class Output():
         self.out_prefix   = output
         self.out_dir_name = outdir
 
-        # Create output dir if necessary
+        # Create output directory if necessary
         if ( self.out_dir_name != '' and os.path.exists( self.out_dir_name ) == False ):
             if ( self.out_dir_name[ -1 ] != '/' ): self.out_dir_name += '/'
             print_log( '\nOutput directory ' + self.out_dir_name + ' was created.\n' )
@@ -664,6 +683,10 @@ class Output():
         print_log( ' * Pruned tree              : ' + self.out_pruned_tree           )
         print_log( '===============================================================' )
 
+# --------------------------------------------------------------------------- #
+#                                MAIN FUNCTION                                #
+# --------------------------------------------------------------------------- #
+
 def main():
     # Elapsed time : START
     time = Time()
@@ -700,6 +723,7 @@ def main():
     output.savePrunedLeavesList( tree.pruned_leaves )
     output.saveTree( tree.pruned_tree )
 
+    # Show output file names
     output.showOutputFileNames()
 
     finish_program()
@@ -709,6 +733,7 @@ def main():
     time.calcElapsedTime()
     time.showElapsedTime()
 
+    # Save execution logs and close files
     output.saveExeLog()
     output.closeFiles()
 
