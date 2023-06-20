@@ -53,7 +53,7 @@ Basically, this tool requires **input tree data** with `-i` or `--input` command
 % python3 script_prototype.py -i P69905_500_leaves.newick -o output
 ```
 
-Type `-h` or `--help` to see all the options supposed:
+Type `-h` or `--help` to see all the options supported:
 
 | Option                 | Option type | Description                                                                            |
 | :---                   | :---        | :---                                                                                   |
@@ -93,4 +93,20 @@ In this demo, the test data `P69905_500_leaves.newick` in `demo` directory is us
 
 ![readme image 1](image/rtl_plot.png)
 
-The *X* axis represents number of the leaves remains and the *Y* axis is RTL, in each iteration. The dot plot shows that number of leaves remain is 248, while the RTL (`total branch length of pruned tree / total branch length of original tree`) is 0.95, implying that *[name of tool]* pruned 252 leaves and retained the rest 248, while the 95% of divergence of the tree was preserved. 
+The *X* axis represents number of the remaining leaves and the *Y* axis is RTL in each iteration. The dot plot shows that number of leaves remain is 248, while the RTL (`total branch length of pruned tree / total branch length of original tree`) is 0.95, implying that *[name of tool]* pruned 252 leaves and retained the rest 248, while the 95% of divergence of the tree was preserved. 
+
+### Improvement of Relative Closest Branch Length (RCBL)
+
+RCBL (`average distance of leaves to their closest leaves in trimmed tree / average distance of leaves to their closest leaves in original tree`) is also calculated as another performance evaluation. In this demo, to what extent the RCBL in the pruned tree can improve compared to the original tree's throughout the execution of the tool, while the stop option is set at 0.95 of RTL:
+
+```
+% python3 script_prototype.py -i P69905_500_leaves.newick -o output -r 0.95
+``` 
+
+![readme image 2](image/rcbl_plot.png)
+
+The horizontal violin plot shows that the Average Closest Branch Length (ACBL) of the original tree (n=500) is `0.092` and ACBL of the pruned tree (n=248) is `0.221`. Hence, the RCBL is about `2.412` (the exact number might be different as both of ACBLs are rounded at digit 3), implying that the average of branch lengths between the leaves and their closest leaves improves more than twice throught the execution of *[name of tool]*, while 95% of divergence of the phylogenetic tree is preserved.
+
+## Queries, issues and reports
+
+If you have any inquiries, requests for new functionalities, reports on errors, or concerns related to the most recent release of *[name of tool]*, kindly utilize the [issues](https://github.com/shin-kinos/ThesisProject/issues) section positioned at the upper-left corner of the GitHub repository.
