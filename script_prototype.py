@@ -23,7 +23,7 @@ import time               # For elapse time reporting
 from   enum import Enum   # For Enum error handling
 import phylotreelib as pt # Package for tree handling
 
-VERSION = '0.2.1'      # Current version of program
+VERSION = '0.2.2'      # Current version of program
 ARG_S   = False        # Global variable of argument '--silent', True or False, default False
 EXE_LOG = ''           # Global variable of execution log
 TSV_LOG = ''           # Global variable of output TSV file
@@ -76,7 +76,7 @@ def print_help( script_name ):
     print( '-F | --outfmt     <String>     Format of output file:\n'          \
            '                                   * newick = Newick (default)\n' \
            '                                   * nexus  = NEXUS' )
-    print( '-R | --resolution <Integer>    resolution of leaf pruning, 1 or more, default 1' )
+    print( '-R | --resolution <Integer>    Resolution of leaf pruning, 1 or more, default 1' )
     print( '-s | --silent     <Flag>       If true, program does not show any logs on terminal during calculation' )
     print( '-v | --version    <Flag>       Print current version, ignore all other arguments' )
     print( '-h | --help       <Flag>       Print this help, ignore all other arguments' )
