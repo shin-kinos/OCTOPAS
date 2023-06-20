@@ -454,7 +454,7 @@ class Pruner( Tree ):
         # Get number of all leaves
         self.num_remain_leaves = self.num_all_leaves
         # Report TSV, header name
-        report_tsv( 'Iteration\t#RemainLeaves\tRTL\tPrunedLeaf' )
+        report_tsv( 'Iteration\tLeavesNumber\tRTL\tPrunedLeaf' )
         # Get initial RTL
         self.current_rtl = 1.0
 
@@ -473,7 +473,7 @@ class Pruner( Tree ):
                 current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
                 print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
                             'RTL : '                + current_rtl_round             + '\t' + \
-                            '# of leaves remain : ' + str( self.num_remain_leaves ) + '\t' + \
+                            'Remaining leaves # : ' + str( self.num_remain_leaves ) + '\t' + \
                             'Pruned leaf : '        + str( self.pruned_leaf       ) )
                 # Report TSV log
                 report_tsv( str( self.iteration_time    ) + '\t' + \
@@ -497,7 +497,7 @@ class Pruner( Tree ):
                     current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
                     print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
                                 'RTL : '                + current_rtl_round             + '\t' + \
-                                '# of leaves remain : ' + str( self.num_remain_leaves ) + '\t' + \
+                                'Remaining leaves # : ' + str( self.num_remain_leaves ) + '\t' + \
                                 'Pruned leaf : '        + str( self.pruned_leaf       ) )
                     # Report TSV log
                     report_tsv( str( self.iteration_time    ) + '\t' + \
@@ -516,7 +516,7 @@ class Pruner( Tree ):
         # Get number of all leaves
         self.num_remain_leaves = self.num_all_leaves
         # Report TSV, header name
-        report_tsv( 'Iteration\t#RemainLeaves\tRTL' )
+        report_tsv( 'Iteration\tLeavesNumber\tRTL' )
         # Get initial RTL
         self.current_rtl = 1.0
 
@@ -538,7 +538,7 @@ class Pruner( Tree ):
                 current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
                 print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
                             'RTL : '                + current_rtl_round             + '\t' + \
-                            '# of leaves remain : ' + str( self.num_remain_leaves ) )
+                            'Remaining leaves # : ' + str( self.num_remain_leaves ) )
                 # Stop loop if [# leaves remain] < [resolution] and program still try to run
                 if ( ( self.num_remain_leaves - resolution ) <= 3 ):
                     print_log( '\nNOTE : Iteration stopped since no leaves can be pruned with the resolution.' )
@@ -563,7 +563,7 @@ class Pruner( Tree ):
                 current_rtl_round = '%.12f' % round( self.current_rtl, 12 )
                 print_log(  'Iteration : '          + str( self.iteration_time    ) + '\t' + \
                             'RTL : '                + current_rtl_round             + '\t' + \
-                            '# of leaves remain : ' + str( self.num_remain_leaves ) )
+                            'Remaining leaves # : ' + str( self.num_remain_leaves ) )
                 # Stop loop if [# leaves remain] < [resolution] and program still try to run
                 if ( ( self.num_remain_leaves - resolution ) <= 3 ):
                     print_log( '\nNOTE : Iteration stopped since no leaves can be pruned with the resolution.' )
