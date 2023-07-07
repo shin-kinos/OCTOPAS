@@ -1,5 +1,7 @@
 # OCTOPAS
 
+[![GitHub release](https://img.shields.io/badge/release-v0.2.3-brightgreen)](https://github.com/shin-kinos/OCTOPAS/releases/tag/v0.2.3) [![GitHub license](https://img.shields.io/badge/LICENSE-GPLv3-blue)](https://github.com/shin-kinos/OCTOPAS/blob/main/LICENSE) 
+
 ## Description 
 
 * A Python tool which automatically prunes several leaves on a phylogenetic tree to reduce its size and redanduncy by referencing the branch lengths of parent nodes
