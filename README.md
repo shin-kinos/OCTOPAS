@@ -31,7 +31,7 @@ Then, download the script `octopas.py`. Check if the tool works with `-v` or `--
 [e.g.]
 
 ```
-% python3 script_prototype.py -v
+% python3 octopas.py -v
 ```
 
 You can also download a small test phylogenetic tree data `P69905_500_leaves.newick` in `demo` direcotry, which is composed of 500 leaves of Human hemoglobin subunit alpha AA sequence and its highly redandunt homologous sequences.
@@ -50,7 +50,7 @@ Basically, this tool requires **input tree data** with `-i` or `--input` command
 [e.g.]
 
 ```
-% python3 script_prototype.py -i P69905_500_leaves.newick -o output
+% python3 octopas.py -i P69905_500_leaves.newick -o output
 ```
 
 Type `-h` or `--help` to see all the options supported:
@@ -88,7 +88,7 @@ This tool generates 5 types of output file:
 In this demo, the test data `P69905_500_leaves.newick` in `demo` directory is used. The program was executed to this test data with options `-n = 3` and `-R = 1`, which number of the leaves remain is set at 3 with resolution in each iteration at 1:
 
 ```
-% python3 script_prototype.py -i P69905_500_leaves.newick -o output -n 3 -R 1
+% python3 octopas.py -i P69905_500_leaves.newick -o output -n 3 -R 1
 ```
 
 ![readme image 1](image/rtl_plot.png)
@@ -100,7 +100,7 @@ The *X* axis represents number of the remaining leaves and the *Y* axis is RTL i
 RCBL (`average distance of leaves to their closest leaves in trimmed tree / average distance of leaves to their closest leaves in original tree`) is also calculated as another performance evaluation. In this demo, to what extent the RCBL in the pruned tree can improve compared to the original tree's throughout the execution of the tool, while the stop option is set at 0.95 of RTL:
 
 ```
-% python3 script_prototype.py -i P69905_500_leaves.newick -o output -r 0.95
+% python3 octopas.py -i P69905_500_leaves.newick -o output -r 0.95
 ``` 
 
 ![readme image 2](image/rcbl_plot.png)
