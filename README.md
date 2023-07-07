@@ -1,15 +1,13 @@
-# *[name of tool]*
+# OCTOPAS
 
 ## Description 
 
 * A Python tool which automatically prunes several leaves on a phylogenetic tree to reduce its size and redanduncy by referencing the branch lengths of parent nodes
 * The input file format is Newick or NEXUS
-* The output files are list of remaining leaves throughout the calculation and pruned tree
-* Enjoy✌️
+* The output files are list of remaining leaves throughout the calculation and pruned phylogenetic tree
+* Enjoy 🐙
 
 ## Dependencies
-
-**Test environment:**
 
 * Python (`v3.8` or more)
 * phylotreelib (`v1.18` or more)
@@ -26,7 +24,7 @@ So, if necessary, implement this package by using `pip` command onto your enviro
 % pip install phylotreelib
 ```
 
-Then, download the script `script_prototype.py`. Check if the tool works with `-v` or `--version` command: 
+Then, download the script `octopas.py`. Check if the tool works with `-v` or `--version` command: 
 
 [e.g.]
 
@@ -81,7 +79,7 @@ This tool generates 5 types of output file:
 | `<output prefix>_remaining_leaves.txt` | List of remaining leaves                                                                        |
 | `<output prefix>_tree.<tree format>`     | Output pruned tree in `Newick` or `NEXUS` format                                                |
 
-## Tutrial
+## Tutorial
 
 ### Pruning leaves based on Relative Tree Length (RTL) 
 
@@ -93,7 +91,7 @@ In this demo, the test data `P69905_500_leaves.newick` in `demo` directory is us
 
 ![readme image 1](image/rtl_plot.png)
 
-The *X* axis represents number of the remaining leaves and the *Y* axis is RTL in each iteration. The dot plot shows that number of leaves remain is 248, while the RTL (`total branch length of pruned tree / total branch length of original tree`) is 0.95, implying that *[name of tool]* pruned 252 leaves and retained the rest 248, while the 95% of divergence of the tree was preserved. 
+The *X* axis represents number of the remaining leaves and the *Y* axis is RTL in each iteration. The dot plot shows that number of leaves remain is 248, while the RTL (`total branch length of pruned tree / total branch length of original tree`) is 0.95, implying that OCTOPAS pruned 252 leaves and retained the rest 248, while the 95% of divergence of the tree was preserved. 
 
 ### Improvement of Relative Closest Branch Length (RCBL)
 
@@ -105,8 +103,8 @@ RCBL (`average distance of leaves to their closest leaves in trimmed tree / aver
 
 ![readme image 2](image/rcbl_plot.png)
 
-The horizontal violin plot shows that the Average Closest Branch Length (ACBL) of the original tree (n=500) is `0.092` and ACBL of the pruned tree (n=248) is `0.221`. Hence, the RCBL is about `2.412` (the exact number might be different as both of ACBLs are rounded at digit 3), implying that the average of branch lengths between the leaves and their closest leaves improves more than twice throught the execution of *[name of tool]*, while 95% of divergence of the phylogenetic tree is preserved.
+The horizontal violin plot shows that the Average Closest Branch Length (ACBL) of the original tree (n=500) is `0.092` and ACBL of the pruned tree (n=248) is `0.221`. Hence, the RCBL is about `2.412` (the exact number might be different as both of ACBLs are rounded at digit 3), implying that the average of branch lengths between the leaves and their closest leaves improves more than twice throught the execution of OCTOPAS, while 95% of divergence of the phylogenetic tree is preserved.
 
 ## Queries, issues and reports
 
-If you have any inquiries, requests for new functionalities, reports on errors, or concerns related to the most recent release of *[name of tool]*, kindly utilize the [issues](https://github.com/shin-kinos/ThesisProject/issues) section positioned at the upper-left corner of the GitHub repository.
+If you have any inquiries, requests for new functionalities, reports on errors, or concerns related to the most recent release of OCTOPAS, kindly utilize the [issues](https://github.com/shin-kinos/ThesisProject/issues) section positioned at the upper-left corner of the GitHub repository.

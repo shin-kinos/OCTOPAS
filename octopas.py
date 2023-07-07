@@ -23,16 +23,16 @@ import time               # For elapse time reporting
 from   enum import Enum   # For Enum error handling
 import phylotreelib as pt # Package for tree handling
 
-VERSION = '0.2.2'      # Current version of program
+VERSION = '0.2.3'      # Current version of program
 ARG_S   = False        # Global variable of argument '--silent', True or False, default False
 EXE_LOG = ''           # Global variable of execution log
 TSV_LOG = ''           # Global variable of output TSV file
 DIGIT   = 6            # Global variable to round float values
-RED     = '\033[1;31m' # Escape sequence colour code : RED
-GREEN   = '\033[1;32m' # Escape sequence colour code : GREEN
-RESET   = '\033[0m'    # Reset escape sequence colour code
 
 ''' These global variables are not used anymore !!!
+    RED     = '\033[1;31m' # Escape sequence colour code : RED
+    GREEN   = '\033[1;32m' # Escape sequence colour code : GREEN
+    RESET   = '\033[0m'    # Reset escape sequence colour code
     OUTPUT  = None         # Global variable of output files name prefix
     OUT_DIR = ''           # Glocal variable of output directory
     YELLOW  = '\033[1;33m' # Escape sequence colour code : YELLOW
@@ -102,14 +102,14 @@ def error_bomb( MESSAGE ):
     global ARG_S
     ARG_S = True
 
-    print( RED + '\n\nERROR !!!' + RESET )
-    print_log(   '\n\nERROR !!!'         )
+    print(     '\n\nERROR !!!' )
+    print_log( '\n\nERROR !!!' )
 
     print(     MESSAGE.value )
     print_log( MESSAGE.value )
 
-    print( RED + '\nPROGRAM HALTED !!!' + RESET )
-    print_log(   '\nRPOGRAM HALTED !!!'         )
+    print(     '\nPROGRAM HALTED !!!' )
+    print_log( '\nRPOGRAM HALTED !!!' )
 
     sys.exit( 1 )
 
@@ -117,7 +117,7 @@ def error_bomb( MESSAGE ):
 def finish_program():
     global EXE_LOG, ARG_S
     EXE_LOG += '\n' + 'PROGRAM FINISHED !!!' + '\n'
-    if ( ARG_S == False ): print( '\n' + GREEN + 'PROGRAM FINISHED !!!' + RESET )
+    if ( ARG_S == False ): print( '\n' + 'PROGRAM FINISHED !!!' )
 
 # --------------------------------------------------------------------------- #
 #   GENERAL CLASSES (OPTION SETTING, FILE READING AND ERROR HANDLING ETC.)    #
