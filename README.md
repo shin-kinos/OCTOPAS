@@ -2,9 +2,13 @@
 
 [![GitHub release](https://img.shields.io/badge/release-v0.2.3-brightgreen)](https://github.com/shin-kinos/OCTOPAS/releases/tag/v0.2.3) [![GitHub license](https://img.shields.io/badge/LICENSE-GPLv3-blue)](https://github.com/shin-kinos/OCTOPAS/blob/main/LICENSE) 
 
+OCTOPAS is a fast and high-performance tool to reduce redundancy of large size phylogenetic datasets by referencing parent nodes.
+
+### The GUI version of OCTOPAS is now available ***([here](https://github.com/shin-kinos/GUIforOCTOPAS))*** !
+
 ## Description 
 
-* A Python tool which automatically prunes several leaves on a phylogenetic tree to reduce its size and redanduncy by referencing the branch lengths of parent nodes
+* A Python tool which automatically prunes several leaves on phylogenetic trees to reduce their size and redanduncy by referencing parent nodes
 * The input file format is Newick or NEXUS
 * The output files are list of remaining leaves throughout the calculation and pruned phylogenetic tree
 * Enjoy 🐙
@@ -109,4 +113,4 @@ The horizontal violin plot shows that the Average Closest Branch Length (ACBL) o
 
 ## Queries, issues and reports
 
-If you have any inquiries, requests for new functionalities, reports on errors, or concerns related to the most recent release of OCTOPAS, kindly utilize the [issues](https://github.com/shin-kinos/ThesisProject/issues) section positioned at the upper-left corner of the GitHub repository.
+If you have any inquiries, requests for new functionalities, reports on errors, or concerns related to the most recent release of OCTOPAS, kindly utilise the [issues](https://github.com/shin-kinos/ThesisProject/issues) section positioned at the upper-left corner of the GitHub repository.
