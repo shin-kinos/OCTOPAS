@@ -4,7 +4,7 @@
 
 OCTOPAS is a fast and high-performance tool to reduce redundancy of large size phylogenetic datasets by referencing parent nodes.
 
-### The GUI version of OCTOPAS is now available ***([here](https://github.com/shin-kinos/GUIforOCTOPAS))*** !
+### The GUI version of OCTOPAS is now available ***[here](https://github.com/shin-kinos/GUIforOCTOPAS)*** !
 
 ## Description 
 
