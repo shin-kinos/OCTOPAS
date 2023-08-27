@@ -1,6 +1,6 @@
 
 '''
-    <one line to give the program's name and a brief idea of what it does.>
+    OCTOPAS: Tool to reduce redundancy of phylogenetic trees by referencing parent nodes
     Copyright (C) 2023  Shintaro Kinoshita
 
     This program is free software: you can redistribute it and/or modify
