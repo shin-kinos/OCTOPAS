@@ -1,6 +1,6 @@
 # OCTOPAS
 
-[![GitHub release](https://img.shields.io/badge/release-v0.2.3-brightgreen)](https://github.com/shin-kinos/OCTOPAS/releases/tag/v0.2.3) [![GitHub license](https://img.shields.io/badge/LICENSE-GPLv3-blue)](https://github.com/shin-kinos/OCTOPAS/blob/main/LICENSE) 
+[![GitHub release](https://img.shields.io/badge/release-v0.2.4-brightgreen)](https://github.com/shin-kinos/OCTOPAS/releases/tag/v0.2.4) [![GitHub license](https://img.shields.io/badge/LICENSE-GPLv3-blue)](https://github.com/shin-kinos/OCTOPAS/blob/main/LICENSE) 
 
 OCTOPAS is a fast and high-performance tool to reduce redundancy of large size phylogenetic datasets by referencing parent nodes.
 
