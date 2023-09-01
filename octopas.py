@@ -572,7 +572,7 @@ class Pruner( Tree ):
                 self.iteration_time += 1
 
 # --------------------------------------------------------------------------- #
-#                      CLASSES FOR OUTPUT FILES HANDING                       #
+#                      CLASSES FOR OUTPUT FILES HANDLING                      #
 # --------------------------------------------------------------------------- #
 
 class Output():
