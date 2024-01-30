@@ -44,7 +44,7 @@ You can also download a small test phylogenetic tree data `P69905_500_leaves.new
 
 The input tree data must be in `Newick` or `NEXUS` format. Visit below for more information about these formats:
 
-* Newick ([https://evolution.genetics.washington.edu/phylip/newicktree.html](https://evolution.genetics.washington.edu/phylip/newicktree.html))
+* Newick ([https://evolution.genetics.washington.edu/phylip/newicktree.html](https://phylipweb.github.io/phylip/newicktree.html))
 * NEXUS ([http://wiki.christophchamp.com/index.php?title=NEXUS_file_format](http://wiki.christophchamp.com/index.php?title=NEXUS_file_format))
 
 ## Usage
